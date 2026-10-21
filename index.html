@@ -1,521 +1,286 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JOG ANIME WORLD</title>
-
-<style>
-:root {
-  --fond: #090b16;
-  --carte: #151a2d;
-  --bleu: #00d9ff;
-  --violet: #8b5cf6;
-  --texte: #f4f6ff;
-  --gris: #aab2cc;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--fond);
-  color: var(--texte);
-}
-
-header {
-  padding: 22px 15px;
-  text-align: center;
-  background: linear-gradient(120deg, #111936, #37145c);
-  border-bottom: 2px solid var(--bleu);
-}
-
-.logo {
-  font-size: 27px;
-  font-weight: bold;
-  color: var(--bleu);
-}
-
-header p {
-  color: var(--gris);
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 12px;
-  background: #101426;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-button, .bouton {
-  border: 0;
-  border-radius: 8px;
-  padding: 11px 14px;
-  background: linear-gradient(100deg, #087df5, #8748ef);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: .85;
-}
-
-main {
-  max-width: 1050px;
-  margin: auto;
-  padding: 18px;
-}
-
-.hero {
-  padding: 35px 20px;
-  text-align: center;
-  background: linear-gradient(135deg, #182347, #35134f);
-  border-radius: 18px;
-  margin-bottom: 25px;
-}
-
-.hero h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-}
-
-.hero span {
-  color: var(--bleu);
-}
-
-.hero p {
-  color: var(--gris);
-  line-height: 1.6;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 7px 0 14px;
-  border: 1px solid #303958;
-  border-radius: 8px;
-  background: #101426;
-  color: white;
-  font-size: 15px;
-}
-
-input[type="file"] {
-  padding: 8px;
-}
-
-h2 {
-  color: var(--bleu);
-}
-
-.section {
-  margin: 28px 0;
-}
-
-.grille {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-  gap: 15px;
-}
-
-.carte {
-  overflow: hidden;
-  background: var(--carte);
-  border: 1px solid #29314d;
-  border-radius: 13px;
-  padding-bottom: 12px;
-}
-
-.carte img {
-  width: 100%;
-  height: 175px;
-  object-fit: cover;
-  background: #242b43;
-}
-
-.carte h3 {
-  padding: 0 10px;
-  margin-bottom: 5px;
-}
-
-.carte p {
-  padding: 0 10px;
-  color: var(--gris);
-  font-size: 14px;
-}
-
-.carte button {
-  margin: 5px 10px;
-}
-
-.formulaire {
-  background: var(--carte);
-  border: 1px solid #303958;
-  border-radius: 14px;
-  padding: 18px;
-}
-
-.masque {
-  display: none;
-}
-
-.info {
-  color: var(--gris);
-  line-height: 1.6;
-}
-
-footer {
-  padding: 25px 15px;
-  text-align: center;
-  background: #101426;
-  color: var(--gris);
-  margin-top: 35px;
-}
-
-@media (max-width: 450px) {
-  .hero h1 {
-    font-size: 25px;
-  }
-
-  nav button {
-    padding: 9px;
-    font-size: 12px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JOG Anime World</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: Arial, sans-serif;
+      background: #080d1c; color: white;
+    }
+    header {
+      padding: 28px 15px; text-align: center;
+      background: linear-gradient(135deg,#17134a,#5420a3);
+    }
+    header h1 { color: #a9d7ff; }
+    nav {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 8px; padding: 12px; background: #111a31;
+    }
+    button {
+      padding: 11px 15px; border: 0; border-radius: 8px;
+      background: #713de0; color: white; font-weight: bold;
+    }
+    main { max-width: 1100px; margin: auto; padding: 18px; }
+    h2 { color: #9fcaff; }
+    .welcome,.panel {
+      padding: 20px; border-radius: 12px;
+      background: #121b30; margin-bottom: 20px;
+    }
+    input,textarea,select {
+      width: 100%; padding: 12px; margin: 7px 0 12px;
+      border: 1px solid #39476c; border-radius: 8px;
+      background: #10182b; color: white;
+    }
+    .catalogue {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 16px;
+    }
+    .card {
+      background: #121b30; border: 1px solid #293957;
+      border-radius: 12px; overflow: hidden;
+    }
+    .card img {
+      width: 100%; height: 190px; object-fit: cover;
+    }
+    .card-content { padding: 14px; overflow-wrap: anywhere; }
+    .card h3 { color: #b8a1ff; }
+    .card a { color: #83d6ff; }
+    .hidden { display: none; }
+    #message { color: #a9e8ff; overflow-wrap: anywhere; }
+    footer {
+      padding: 25px; text-align: center; background: #111a31;
+    }
+  </style>
 </head>
-
 <body>
-
 <header>
-  <div class="logo">⚡ JOG ANIME WORLD</div>
-  <p>Un monde, mille univers, une seule passion !</p>
+  <h1>🎮 JOG Anime World</h1>
+  <p>Jules Otaku Gaming Anime World</p>
+  <p>🌌 Ton univers d'animes et de jeux vidéo !</p>
 </header>
 
 <nav>
-  <button onclick="afficher('accueil')">🏠 Accueil</button>
-  <button onclick="afficher('animes')">🎌 Animes</button>
-  <button onclick="afficher('jeux')">🎮 Jeux vidéo</button>
-  <button onclick="afficher('admin')">🔐 Administration</button>
+  <button onclick="showSection('accueil')">Accueil</button>
+  <button onclick="filterCategory('Anime')">Animes</button>
+  <button onclick="filterCategory('Jeu vidéo')">Jeux vidéo</button>
+  <button onclick="showSection('administration')">Administration</button>
 </nav>
 
 <main>
+  <section id="accueil">
+    <div class="welcome">
+      <h2>Bienvenue sur JOG Anime World !</h2>
+      <p>Découvre des animes, explore des jeux vidéo et retrouve tes univers préférés.</p>
+      <p>🔥 Anime • 🎮 Gaming • 🌍 Culture otaku</p>
+    </div>
+    <h2>📚 Notre catalogue</h2>
+    <input id="recherche" type="search"
+      placeholder="Rechercher un anime ou un jeu..." oninput="renderCatalogue()">
+    <div id="catalogue" class="catalogue">Chargement...</div>
+  </section>
 
-<section id="accueil">
-  <div class="hero">
-    <h1>Bienvenue dans <span>JOG ANIME WORLD</span></h1>
-    <p>Découvre des animes japonais, des personnages inoubliables et des jeux vidéo.</p>
-    <button onclick="afficher('animes')">Explorer les animes</button>
-    <button onclick="afficher('jeux')">Explorer les jeux</button>
-  </div>
-
-  <div class="section">
-    <h2>🔥 Derniers ajouts</h2>
-    <div id="accueilGrille" class="grille"></div>
-  </div>
-
-  <p class="info">
-    Site indépendant consacré aux animes et aux jeux vidéo.
-    Les images et les vidéos doivent être utilisées avec les autorisations nécessaires.
-  </p>
-</section>
-
-<section id="animes" class="masque">
-  <h2>🎌 Catalogue des animes</h2>
-  <input id="rechercheAnime" placeholder="Rechercher un anime..."
-         oninput="afficherCatalogue('anime')">
-  <div id="grilleAnime" class="grille"></div>
-</section>
-
-<section id="jeux" class="masque">
-  <h2>🎮 Catalogue des jeux vidéo</h2>
-  <input id="rechercheJeu" placeholder="Rechercher un jeu..."
-         oninput="afficherCatalogue('jeu')">
-  <div id="grilleJeu" class="grille"></div>
-</section>
-
-<section id="admin" class="masque">
-  <h2>🔐 Espace d'administration</h2>
-
-  <div id="connexion" class="formulaire">
-    <p class="info">
-      Accède à la gestion locale de ton catalogue.
-      Ce code de démonstration ne constitue pas une véritable protection
-      pour un site public.
-    </p>
-    <label>Code de démonstration</label>
-    <input id="codeAdmin" type="password" placeholder="Entre le code">
-    <button onclick="connecter()">Se connecter</button>
-  </div>
-
-  <div id="gestion" class="masque">
-    <div class="formulaire">
-      <h3>➕ Ajouter un contenu</h3>
-
-      <label>Catégorie</label>
-      <select id="categorie">
-        <option value="anime">Anime</option>
-        <option value="jeu">Jeu vidéo</option>
-      </select>
-
-      <label>Nom</label>
-      <input id="nom" placeholder="Exemple : Blue Lock">
-
-      <label>Description</label>
-      <textarea id="description" placeholder="Présente ce contenu"></textarea>
-
-      <label>Saison ou plateforme</label>
-      <input id="detail" placeholder="Exemple : Saison 1 ou PSP">
-
-      <label>Image depuis ton téléphone</label>
-      <input id="image" type="file" accept="image/*">
-
-      <label>Lien vidéo ou lien autorisé</label>
-      <input id="lien" type="url" placeholder="https://...">
-
-      <button onclick="ajouter()">Ajouter au catalogue</button>
+  <section id="administration" class="hidden">
+    <h2>🔐 Administration</h2>
+    <div class="panel">
+      <h3>Connexion administrateur</h3>
+      <form id="loginForm">
+        <label>Adresse e-mail</label>
+        <input id="email" type="email" required>
+        <label>Mot de passe Supabase</label>
+        <input id="password" type="password" required>
+        <button type="submit">Se connecter</button>
+      </form>
+      <button id="logoutButton" class="hidden" onclick="logout()">Se déconnecter</button>
+      <p id="message"></p>
     </div>
 
-    <p class="info">
-      Les ajouts sont enregistrés dans ce navigateur.
-      Les images locales ne sont pas publiées sur Internet automatiquement.
-    </p>
-
-    <button onclick="exporter()">Exporter le catalogue</button>
-    <button onclick="deconnecter()">Se déconnecter</button>
-  </div>
-</section>
-
-<section id="lecteur" class="masque">
-  <h2 id="titreVideo">🎬 Lecteur</h2>
-  <div id="zoneVideo"></div>
-  <button onclick="retourCatalogue()">⬅ Retour</button>
-</section>
-
+    <div id="adminFormPanel" class="panel hidden">
+      <h3>➕ Ajouter un contenu</h3>
+      <form id="contentForm">
+        <label>Nom</label>
+        <input id="nom" required placeholder="Ex. : Blue Lock">
+        <label>Catégorie</label>
+        <select id="categorie">
+          <option value="Anime">Anime</option>
+          <option value="Jeu vidéo">Jeu vidéo</option>
+        </select>
+        <label>Description</label>
+        <textarea id="description" rows="4"></textarea>
+        <label>Image depuis ton téléphone</label>
+        <input id="image" type="file" accept="image/*">
+        <label>Lien officiel ou légal</label>
+        <input id="lien" type="url" placeholder="https://...">
+        <button type="submit">Publier le contenu</button>
+      </form>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <strong>JOG ANIME WORLD</strong>
-  <p>Anime • Gaming • Passion</p>
-  <p>© <span id="annee"></span> JOG ANIME WORLD</p>
+  <p>© JOG Anime World — Anime • Gaming • Culture otaku</p>
 </footer>
 
 <script>
-const CLE = "jog_anime_world_catalogue_v1";
-let catalogue = [];
-let imagesTemporaires = [];
+const SUPABASE_URL = "https://eoonopkhsinnieavwwyj.supabase.co";
+const SUPABASE_KEY = "sb_publishable_EHsGDT9xnwtY9sJJaLSzCQ_ZnuNTDzU";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-function charger() {
-  try {
-    catalogue = JSON.parse(localStorage.getItem(CLE) || "[]");
-    if (!Array.isArray(catalogue)) catalogue = [];
-  } catch (e) {
-    catalogue = [];
+let contenus = [];
+let categorieActive = "";
+
+function showSection(id) {
+  document.getElementById("accueil").classList.toggle("hidden",id!=="accueil");
+  document.getElementById("administration").classList.toggle("hidden",id!=="administration");
+}
+function filterCategory(cat) {
+  categorieActive = cat;
+  showSection("accueil");
+  renderCatalogue();
+}
+async function loadCatalogue() {
+  const {data,error} = await db.from("catalogue").select("*").order("created_at",{ascending:false});
+  if(error) {
+    document.getElementById("catalogue").textContent =
+      "Impossible de charger le catalogue. Vérifie Supabase.";
+    return;
   }
+  contenus = data || [];
+  renderCatalogue();
 }
-
-function sauvegarder() {
-  try {
-    localStorage.setItem(CLE, JSON.stringify(catalogue));
-    return true;
-  } catch (e) {
-    alert("Espace de stockage insuffisant. Essaie une image plus petite.");
-    return false;
-  }
-}
-
-function afficher(id) {
-  document.querySelectorAll("main > section").forEach(s => {
-    s.classList.add("masque");
-  });
-
-  document.getElementById(id).classList.remove("masque");
-
-  if (id === "accueil") afficherAccueil();
-  if (id === "animes") afficherCatalogue("anime");
-  if (id === "jeux") afficherCatalogue("jeu");
-
-  window.scrollTo(0, 0);
-}
-
-function echapper(texte) {
-  return String(texte || "").replace(/[&<>"']/g, c => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[c]);
-}
-
-function carteHTML(item) {
-  const image = item.image
-    ? `<img src="${item.image}" alt="${echapper(item.nom)}">`
-    : `<div style="height:175px;display:grid;place-items:center;font-size:45px">🎌</div>`;
-
-  const detail = item.detail
-    ? `<p>${echapper(item.detail)}</p>`
-    : "";
-
-  return `
-    <article class="carte">
-      ${image}
-      <h3>${echapper(item.nom)}</h3>
-      ${detail}
-      <p>${echapper(item.description)}</p>
-      <button onclick="ouvrirContenu('${item.id}')">Voir le contenu</button>
-    </article>`;
-}
-
-function afficherAccueil() {
-  const zone = document.getElementById("accueilGrille");
-  const derniers = [...catalogue].reverse().slice(0, 6);
-
-  zone.innerHTML = derniers.length
-    ? derniers.map(carteHTML).join("")
-    : `<p class="info">Ton catalogue est vide. Ajoute ton premier contenu dans Administration.</p>`;
-}
-
-function afficherCatalogue(type) {
-  const estAnime = type === "anime";
-  const zone = document.getElementById(estAnime ? "grilleAnime" : "grilleJeu");
-  const recherche = document.getElementById(estAnime ? "rechercheAnime" : "rechercheJeu");
-  const terme = recherche.value.trim().toLowerCase();
-
-  const elements = catalogue.filter(item =>
-    item.type === type &&
-    (item.nom + " " + item.description + " " + item.detail)
-      .toLowerCase().includes(terme)
+function renderCatalogue() {
+  const terme = document.getElementById("recherche").value.toLowerCase().trim();
+  const liste = contenus.filter(item =>
+    ((item.nom||"")+" "+(item.description||"")).toLowerCase().includes(terme)
+    && (!categorieActive || item.categorie===categorieActive)
   );
-
-  zone.innerHTML = elements.length
-    ? elements.map(carteHTML).join("")
-    : `<p class="info">Aucun résultat. Tu pourras ajouter du contenu depuis Administration.</p>`;
-}
-
-function connecter() {
-  if (document.getElementById("codeAdmin").value !== "JOGDEMO") {
-    alert("Code incorrect. Pour cette démonstration, le code est JOGDEMO.");
+  const zone = document.getElementById("catalogue");
+  zone.replaceChildren();
+  if(!liste.length) {
+    zone.textContent = "Aucun contenu trouvé pour le moment.";
     return;
   }
-
-  document.getElementById("connexion").classList.add("masque");
-  document.getElementById("gestion").classList.remove("masque");
+  liste.forEach(item => {
+    const card = document.createElement("article");
+    card.className = "card";
+    if(item.image_url) {
+      const img = document.createElement("img");
+      img.src = item.image_url;
+      img.alt = item.nom || "Image";
+      card.appendChild(img);
+    }
+    const content = document.createElement("div");
+    content.className = "card-content";
+    const title = document.createElement("h3");
+    title.textContent = item.nom || "Sans titre";
+    const desc = document.createElement("p");
+    desc.textContent = item.description || "";
+    content.append(title,desc);
+    if(item.lien_url) {
+      try {
+        const url = new URL(item.lien_url);
+        if(["https:","http:"].includes(url.protocol)) {
+          const a = document.createElement("a");
+          a.href = url.href; a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = "Découvrir le contenu ↗";
+          content.appendChild(a);
+        }
+      } catch(e) {}
+    }
+    card.appendChild(content);
+    zone.appendChild(card);
+  });
 }
-
-function deconnecter() {
-  document.getElementById("gestion").classList.add("masque");
-  document.getElementById("connexion").classList.remove("masque");
-  document.getElementById("codeAdmin").value = "";
+async function updateSession() {
+  const {data} = await db.auth.getSession();
+  const session = data.session;
+  document.getElementById("logoutButton").classList.toggle("hidden",!session);
+  document.getElementById("adminFormPanel").classList.add("hidden");
+  if(session) {
+    document.getElementById("message").textContent = "Vérification des droits...";
+    await checkAdmin();
+  }
 }
+async function checkAdmin() {
+  const {data:sd} = await db.auth.getSession();
+  const user = sd.session?.user;
+  if(!user) return;
+  const {data,error} = await db.from("admin_users").select("user_id")
+    .eq("user_id",user.id).maybeSingle();
+  if(error || !data) {
+    document.getElementById("message").textContent =
+      "Ce compte n'est pas encore autorisé comme administrateur.";
+    return;
+  }
+  document.getElementById("adminFormPanel").classList.remove("hidden");
+  document.getElementById("message").textContent = "Bienvenue dans l'administration !";
+}
+document.getElementById("loginForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  document.getElementById("message").textContent = "Connexion...";
+  const {error} = await db.auth.signInWithPassword({email,password});
+  if(error) {
+    document.getElementById("message").textContent =
+      "Connexion impossible. Vérifie ton compte.";
+    return;
+  }
+  await updateSession();
+});
+async function logout() {
+  await db.auth.signOut();
+  document.getElementById("adminFormPanel").classList.add("hidden");
+  document.getElementById("message").textContent = "Déconnecté.";
+  await updateSession();
+}
+document.getElementById("contentForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const {data:sd} = await db.auth.getSession();
+  if(!sd.session) { alert("Connecte-toi d'abord."); return; }
 
-function ajouter() {
   const nom = document.getElementById("nom").value.trim();
+  const categorie = document.getElementById("categorie").value;
+  const description = document.getElementById("description").value.trim();
+  const lien = document.getElementById("lien").value.trim();
   const fichier = document.getElementById("image").files[0];
+  let imageUrl = null;
 
-  if (!nom) {
-    alert("Entre le nom du contenu.");
-    return;
-  }
-
-  if (fichier && fichier.size > 700000) {
-    alert("Cette image est trop grande. Choisis une image de moins de 700 Ko.");
-    return;
-  }
-
-  const enregistrer = image => {
-    const item = {
-      id: Date.now().toString(),
-      type: document.getElementById("categorie").value,
-      nom,
-      description: document.getElementById("description").value.trim(),
-      detail: document.getElementById("detail").value.trim(),
-      lien: document.getElementById("lien").value.trim(),
-      image: image || ""
-    };
-
-    catalogue.push(item);
-
-    if (!sauvegarder()) {
-      catalogue.pop();
+  document.getElementById("message").textContent = "Publication en cours...";
+  if(fichier) {
+    if(!fichier.type.startsWith("image/") || fichier.size>5*1024*1024) {
+      alert("Choisis une image de 5 Mo maximum."); return;
+    }
+    const filename = crypto.randomUUID()+"-"+fichier.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+    const {error:uploadError} = await db.storage.from("jog-images")
+      .upload(filename,fichier,{contentType:fichier.type});
+    if(uploadError) {
+      document.getElementById("message").textContent =
+        "Erreur d'envoi de l'image. Vérifie les autorisations Storage.";
       return;
     }
-
-    document.getElementById("nom").value = "";
-    document.getElementById("description").value = "";
-    document.getElementById("detail").value = "";
-    document.getElementById("lien").value = "";
-    document.getElementById("image").value = "";
-
-    afficherAccueil();
-    alert("Contenu ajouté au catalogue de ce navigateur !");
-  };
-
-  if (fichier) {
-    const lecteur = new FileReader();
-    lecteur.onload = () => enregistrer(lecteur.result);
-    lecteur.onerror = () => alert("Impossible de lire cette image.");
-    lecteur.readAsDataURL(fichier);
-  } else {
-    enregistrer("");
+    imageUrl = db.storage.from("jog-images").getPublicUrl(filename).data.publicUrl;
   }
-}
 
-function ouvrirContenu(id) {
-  const item = catalogue.find(x => x.id === id);
-  if (!item) return;
-
-  afficher("lecteur");
-  document.getElementById("titreVideo").textContent = item.nom;
-
-  const zone = document.getElementById("zoneVideo");
-  zone.innerHTML = `<p>${echapper(item.description)}</p>`;
-
-  if (item.lien) {
-    const lien = document.createElement("a");
-    lien.href = item.lien;
-    lien.target = "_blank";
-    lien.rel = "noopener noreferrer";
-    lien.textContent = "Ouvrir le lien";
-    lien.className = "bouton";
-    zone.appendChild(lien);
-  } else {
-    zone.innerHTML += `<p class="info">Aucun lien vidéo n'a été ajouté.</p>`;
+  const {error} = await db.from("catalogue").insert({
+    nom,categorie,description,image_url:imageUrl,lien_url:lien||null
+  });
+  if(error) {
+    document.getElementById("message").textContent =
+      "Publication refusée. Vérifie les règles de sécurité Supabase.";
+    return;
   }
-}
-
-function retourCatalogue() {
-  const section = catalogue.some(x => x.type === "anime");
-  afficher(section ? "animes" : "jeux");
-}
-
-function exporter() {
-  const fichier = new Blob(
-    [JSON.stringify(catalogue, null, 2)],
-    {type: "application/json"}
-  );
-
-  const url = URL.createObjectURL(fichier);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "jog-anime-world-catalogue.json";
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-document.getElementById("annee").textContent = new Date().getFullYear();
-
-charger();
-afficherAccueil();
+  document.getElementById("contentForm").reset();
+  document.getElementById("message").textContent = "Contenu publié avec succès !";
+  await loadCatalogue();
+});
+db.auth.onAuthStateChange(()=>setTimeout(updateSession,0));
+loadCatalogue();
+updateSession();
 </script>
-
 </body>
-  </html>
+</html>
