@@ -3,167 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101020">
+<meta name="description" content="JOG Anime World : ton univers d'animes et de jeux vidéo !">
 <title>JOG Anime World</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#101020;color:white;font-family:Arial,sans-serif}
-header{text-align:center;padding:28px 12px;background:linear-gradient(135deg,#6c22d9,#ed236b)}
-header h1{margin:0 0 8px}
-nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:15px;background:#19192e}
-button{padding:11px 16px;border:0;border-radius:20px;background:#30304d;color:white;font-weight:bold}
-button.active,button:hover{background:#ed236b}
-main{width:92%;max-width:1100px;margin:25px auto}
-.welcome{background:#1b1b35;padding:25px;border-radius:14px;text-align:center}
-h2{color:#ff5d9e}
-#search{width:100%;padding:14px;margin:22px 0;border-radius:10px;border:1px solid #444;background:#19192e;color:white;font-size:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.card{background:#1b1b35;border:1px solid #30304d;border-radius:13px;overflow:hidden}
-.cover{padding:28px 8px;text-align:center;font-size:24px;font-weight:bold;background:linear-gradient(135deg,#442080,#c42a72)}
-.content{padding:15px}
-.content p{color:#ccc;font-size:14px;line-height:1.5}
-.tag{font-size:12px;color:#ff9fc5}
-.link{display:inline-block;background:#ed236b;color:white;padding:9px 12px;border-radius:8px;text-decoration:none}
-.page.hidden,.card.hidden,.hidden{display:none!important}
-.notice{margin-top:25px;background:#20203a;padding:15px;border-radius:8px;font-size:14px;color:#ddd}
-footer{text-align:center;background:#19192e;padding:25px;color:#bbb;font-size:13px}
+:root {
+  --fond: #080d1d;
+  --carte: #131d38;
+  --violet: #8057ff;
+  --bleu: #19c7ff;
+  --texte: #f4f6ff;
+  --gris: #b8c3dd;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: Arial, sans-serif;
+}
+header {
+  text-align: center;
+  padding: 32px 14px;
+  background: linear-gradient(135deg,#151a45,#512580,#083c60);
+}
+header h1 { font-size: 30px; margin: 0; }
+header p { margin: 10px 0; }
+.slogan { color: var(--bleu); font-weight: bold; }
+.meaning { color: #e0d5ff; font-size: 13px; }
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 8px;
+  background: #10172b;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+button, .bouton {
+  border: none;
+  border-radius: 9px;
+  padding: 11px 14px;
+  background: var(--violet);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+button:hover, .bouton:hover { opacity: .85; }
+main { max-width: 1150px; margin: auto; padding: 18px 13px; }
+section { margin-bottom: 25px; }
+.intro, .panel {
+  background: var(--carte);
+  padding: 18px;
+  border: 1px solid #29385d;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+h2 { color: #b4a2ff; }
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 14px;
+  border-radius: 8px;
+  border: 1px solid #344466;
+  background: #090f21;
+  color: white;
+  font-size: 16px;
+}
+label { display: block; }
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 15px;
+}
+.carte {
+  background: var(--carte);
+  border: 1px solid #29385d;
+  border-radius: 13px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.affiche {
+  height: 110px;
+  display: grid;
+  place-items: center;
+  font-size: 42px;
+  background: linear-gradient(135deg,#20255a,#38235f,#10415c);
+}
+.contenu { padding: 14px; flex: 1; }
+.contenu h3 { margin: 10px 0; }
+.contenu p { color: var(--gris); line-height: 1.5; }
+.tag {
+  background: #30245e;
+  color: #d8caff;
+  border-radius: 7px;
+  padding: 5px 8px;
+  font-size: 12px;
+}
+.lien { display: inline-block; margin-top: 8px; }
+.notice { color: var(--gris); font-size: 13px; line-height: 1.5; }
+.message { overflow-wrap: anywhere; }
+.success { color: #75f0a9; }
+.error { color: #ff9292; }
+.hidden { display: none !important; }
+footer {
+  text-align: center;
+  padding: 25px 12px;
+  background: #10172b;
+  color: var(--gris);
+  line-height: 1.8;
+}
 </style>
 </head>
 
 <body>
+
 <header>
-<h1>🎌 JOG Anime World</h1>
-<p>Ton univers d'animes et de jeux vidéo !</p>
+  <h1>🎮 JOG Anime World</h1>
+  <p><strong>Jules Otaku Gaming Anime World</strong></p>
+  <p class="slogan">🌌 Ton univers d'animes et de jeux vidéo !</p>
+  <p class="meaning">
+    JOG = Jules Otaku Gaming • Anime World = Le monde des animes
+  </p>
 </header>
 
 <nav>
-<button class="active" data-page="home">🏠 Accueil</button>
-<button data-page="animes">🍥 Animes</button>
-<button data-page="games">🎮 Jeux vidéo</button>
+  <button onclick="accueil()">🏠 Accueil</button>
+  <button onclick="filtrer('Anime')">🍥 Animes</button>
+  <button onclick="filtrer('Jeu vidéo')">🎮 Jeux vidéo</button>
+  <button onclick="administration()">🔐 Administration</button>
 </nav>
 
 <main>
-<section id="home" class="page">
-<div class="welcome">
-<h2>Bienvenue dans JOG Anime World !</h2>
-<p>Découvre tes animes préférés et explore l'univers des jeux vidéo.</p>
-</div>
-<h2>🔥 À découvrir</h2>
-<div id="featured" class="grid"></div>
+
+<section id="pageAccueil">
+  <div class="intro">
+    <h2>Bienvenue dans ton univers ! 🌌</h2>
+    <p>
+      Explore les animes, découvre des jeux vidéo et retrouve
+      des liens utiles vers leurs sites officiels.
+    </p>
+    <p class="notice">
+      Les fiches présentent les œuvres et les plateformes légales.
+      Elles ne contiennent pas les épisodes complets ni les fichiers
+      de jeux protégés.
+    </p>
+  </div>
+
+  <h2 id="titreCatalogue">✨ Tout le catalogue</h2>
+
+  <input id="recherche" type="search"
+    placeholder="🔎 Recherche un anime ou un jeu..."
+    oninput="afficherCatalogue()">
+
+  <div id="catalogue" class="grille"></div>
+  <p id="catalogueMessage" class="message"></p>
 </section>
 
-<section id="animes" class="page hidden">
-<h2>🍥 Catalogue des animes</h2>
-<div id="animeGrid" class="grid"></div>
+<section id="pageAdmin" class="hidden">
+  <div class="panel">
+    <h2>🔐 Administration</h2>
+    <p>Connecte-toi avec ton compte administrateur.</p>
+
+    <form id="formConnexion">
+      <label for="email">Adresse e-mail</label>
+      <input id="email" type="email" autocomplete="username" required>
+
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password"
+        autocomplete="current-password" required>
+
+      <button type="submit">Se connecter</button>
+    </form>
+
+    <button id="deconnexion" class="hidden" type="button">
+      Se déconnecter
+    </button>
+
+    <p id="messageConnexion" class="message"></p>
+  </div>
+
+  <div id="formulaireAdmin" class="panel hidden">
+    <h2>📤 Ajouter un contenu</h2>
+
+    <form id="formContenu">
+      <label for="nom">Nom de l'anime ou du jeu</label>
+      <input id="nom" maxlength="120" required>
+
+      <label for="categorie">Catégorie</label>
+      <select id="categorie" required>
+        <option value="Anime">Anime</option>
+        <option value="Jeu vidéo">Jeu vidéo</option>
+      </select>
+
+      <label for="description">Description</label>
+      <textarea id="description" rows="4" maxlength="1000" required></textarea>
+
+      <label for="image">Image depuis ton téléphone (facultatif)</label>
+      <input id="image" type="file" accept="image/*">
+      <p class="notice">Image uniquement, maximum 5 Mo.</p>
+
+      <label for="lien">Lien officiel ou légal</label>
+      <input id="lien" type="url" placeholder="https://..." required>
+
+      <button type="submit">Publier le contenu</button>
+    </form>
+
+    <p id="messagePublication" class="message"></p>
+  </div>
 </section>
 
-<section id="games" class="page hidden">
-<h2>🎮 Catalogue des jeux vidéo</h2>
-<div id="gameGrid" class="grid"></div>
-</section>
-
-<input id="search" type="search" placeholder="🔎 Rechercher un anime ou un jeu...">
-<p id="noResults" class="hidden">Aucun contenu trouvé.</p>
-
-<div class="notice">
-<strong>ℹ️ Information :</strong> Ce site présente des descriptions et des liens vers des pages officielles. Il ne distribue pas de fichiers d'animes ou de jeux protégés.
-</div>
 </main>
 
 <footer>
-<p>© 2026 JOG Anime World</p>
-<p>Un site pour les passionnés d'animes et de jeux vidéo ❤️</p>
+  <strong>🎮 JOG Anime World</strong><br>
+  Jules Otaku Gaming Anime World<br>
+  🌌 Ton univers d'animes et de jeux vidéo !<br>
+  Un univers pour les passionnés d'animes et de jeux vidéo.
 </footer>
 
 <script>
-const animes=[
-{name:"Blue Lock",emoji:"⚽ BLUE LOCK",tag:"Sport",desc:"Des jeunes attaquants s'affrontent pour devenir le meilleur buteur du Japon.",url:"https://bluelock-pr.com/"},
-{name:"Naruto",emoji:"🍥 NARUTO",tag:"Action",desc:"Suis les aventures d'un jeune ninja qui rêve de devenir Hokage.",url:"https://www.viz.com/"},
-{name:"One Piece",emoji:"🏴‍☠️ ONE PIECE",tag:"Aventure",desc:"Luffy et son équipage recherchent le légendaire trésor One Piece.",url:"https://one-piece.com/"},
-{name:"Dragon Ball",emoji:"🐉 DRAGON BALL",tag:"Combat",desc:"Goku et ses amis affrontent de puissants adversaires.",url:"https://dragon-ball-official.com/"},
-{name:"Demon Slayer",emoji:"⚔️ DEMON SLAYER",tag:"Action",desc:"Tanjiro entreprend un voyage pour sauver sa sœur et combattre les démons.",url:"https://demonslayer-anime.com/"},
-{name:"Jujutsu Kaisen",emoji:"👊 JUJUTSU KAISEN",tag:"Fantastique",desc:"Yuji découvre le monde des fléaux et des exorcistes.",url:"https://jujutsukaisen.jp/"}
-];
+const SUPABASE_URL = "https://eoonopkhsinnieavwwyj.supabase.co";
+const SUPABASE_KEY = "sb_publishable_EHsGDT9xnwtY9sJJaLSzCQ_ZnuNTDzU";
 
-const games=[
-{name:"Dragon Ball: Sparking! ZERO",emoji:"🐉 DRAGON BALL",tag:"Combat",desc:"Un jeu de combat spectaculaire dans l'univers de Dragon Ball.",url:"https://en.bandainamcoent.eu/dragon-ball"},
-{name:"Naruto x Boruto",emoji:"🍥 NARUTO X BORUTO",tag:"Combat",desc:"Retrouve les ninjas de Naruto et Boruto dans des combats dynamiques.",url:"https://en.bandainamcoent.eu/"},
-{name:"One Piece: Pirate Warriors",emoji:"🏴‍☠️ ONE PIECE",tag:"Action",desc:"Affronte de nombreux ennemis avec les personnages de One Piece.",url:"https://www.bandainamcoent.com/"},
-{name:"Jujutsu Kaisen Cursed Clash",emoji:"👊 JUJUTSU KAISEN",tag:"Combat",desc:"Des combats en équipe inspirés de Jujutsu Kaisen.",url:"https://en.bandainamcoent.eu/"},
-{name:"Jump Force",emoji:"⭐ JUMP FORCE",tag:"Combat",desc:"Un jeu de combat réunissant des héros de plusieurs mangas.",url:"https://www.bandainamcoent.com/"},
-{name:"Steam",emoji:"💻 JEUX PC",tag:"Plateforme",desc:"Explore un catalogue de jeux PC.",url:"https://store.steampowered.com/"}
-];
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-function createCard(item){
-const card=document.createElement("article");
-card.className="card";
-card.dataset.search=(item.name+" "+item.tag+" "+item.desc).toLowerCase();
+const exemples = [
 
-const cover=document.createElement("div");
-cover.className="cover";
-cover.textContent=item.emoji;
+/* ================= ANIMES ================= */
 
-const content=document.createElement("div");
-content.className="content";
-
-const tag=document.createElement("span");
-tag.className="tag";
-tag.textContent=item.tag;
-
-const title=document.createElement("h3");
-title.textContent=item.name;
-
-const desc=document.createElement("p");
-desc.textContent=item.desc;
-
-const link=document.createElement("a");
-link.className="link";
-link.textContent="Découvrir ↗";
-link.href=item.url;
-link.target="_blank";
-link.rel="noopener noreferrer";
-
-content.append(tag,title,desc,link);
-card.append(cover,content);
-return card;
-}
-
-function fillGrid(id,items){
-const grid=document.getElementById(id);
-items.forEach(item=>grid.appendChild(createCard(item)));
-}
-
-fillGrid("animeGrid",animes);
-fillGrid("gameGrid",games);
-fillGrid("featured",[animes[0],animes[2],animes[3],games[0]]);
-
-let currentPage="home";
-
-document.querySelectorAll("nav button").forEach(button=>{
-button.addEventListener("click",()=>{
-currentPage=button.dataset.page;
-document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));
-document.getElementById(currentPage).classList.remove("hidden");
-document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-button.classList.add("active");
-filterCards();
-});
-});
-
-function filterCards(){
-const query=document.getElementById("search").value.trim().toLowerCase();
-const cards=document.querySelectorAll("#"+currentPage+" .card");
-let count=0;
-cards.forEach(card=>{
-const match=card.dataset.search.includes(query);
-card.classList.toggle("hidden",!match);
-if(match)count++;
-});
-document.getElementById("noResults").classList.toggle("hidden",query===""||count>0);
-}
-
-document.getElementById("search").addEventListener("input",filterCards);
-</script>
-</body>
-</html>
+{nom:"Blue Lock",categorie:"Anime",description:"Football, compétition et ambition.",lien_url:"https://bluelock-pr.com/",emoji:"⚽"},
+{nom:"Naruto",categorie:"Anime",description:"Les aventures d'un jeune ninja.",lien_url:"https://naruto-official.com/en",emoji:"🍥"},
+{nom:"Naruto Shippuden",categorie:"Anime",description:"La suite des aventures de Naruto.",lien_url:"https://naruto-official.com/en",emoji:"🥷"},
+{nom:"One Piece",categorie:"Anime",description:"Une aventure de pirates à la recherche d'un trésor.",lien_url:"https://one-piece.com/",emoji:"🏴‍☠️"},
+{nom:"Dragon Ball Z",categorie:"Anime",description:"Combats et aventures de Goku et ses amis.",lien_url:"https://dragon-ball-official.com/",emoji:"🐉"},
+{nom:"Dragon Ball Super",categorie:"Anime",description:"De nouveaux défis pour les guerriers.",lien_url:"https://dragon-ball-official.com/",emoji:"🌟"},
+{nom:"Demon Slayer",categorie:"Anime",description:"Un jeune héros affronte des démons.",lien_url:"https://demonslayer-anime.com/",emoji:"⚔️"},
+{nom:"Jujutsu Kaisen",categorie:"Anime",description:"Des exorcistes affrontent des fléaux.",lien_url:"https://jujutsukaisen.jp/",emoji:"👻"},
+{nom:"Solo Leveling",categorie:"Anime",description:"Un chasseur progresse dans un monde dangereux.",lien_url:"https://sololeveling-anime.net/",emoji:"⚡"},
+{nom:"My Hero Academia",categorie:"Anime",description:"Des élèves apprennent à devenir des héros.",lien_url:"https://heroaca.com/",emoji:"🦸"},
+{nom:"Black Clover",categorie:"Anime",description:"Asta rêve de devenir Empereur-Mage.",lien_url:"https://bclover.jp/",emoji:"🍀"},
+{nom:"Bleach",categorie:"Anime",description:"Ichigo découvre le monde des Shinigami.",lien_url:"https://bleach-anime.com/",emoji:"🗡️"},
+{nom:"Attack on Titan",categorie:"Anime",description:"L'humanité lutte pour sa survie.",lien_url:"https://shingeki.tv/",emoji:"🛡️"},
+{nom:"Hunter x Hunter",categorie:"Anime",description:"Gon part à la recherche de son père.",lien_url:"https://www.ntv.co.jp/hunterhunter/",emoji:"🧭"},
+{nom:"Tokyo Revengers",categorie:"Anime",description:"Un voyage dans le temps bouleverse une vie.",lien_url:"https://tokyo-revengers-anime.com/",emoji:"⏳"},
+{nom:"Haikyuu!!",categorie:"Anime",description:"Des lycéens poursuivent leur rêve au volleyball.",lien_url:"https://haikyu.jp/",emoji:"🏐"},
+{nom:"Fairy Tail",categorie:"Anime",description:"Les aventures d'une guilde de magiciens.",lien_url:"https://fairytail-tv.com/",emoji:"✨"},
+{nom:"Death Note",categorie:"Anime",description:"Un mystérieux carnet déclenche une enquête.",lien_url:"https://www.ntv.co.jp/deathnote/",emoji:"📓"},
+{nom:"Spy x Family",categorie:"Anime",description:"Une famille secrète pleine de surprises.",lien_url:"https://spy-family.net/",emoji:"🕵️"},
+{nom:"Chainsaw Man",categorie:"Anime",description:"Un jeune homme lié à un démon-tronçonneuse.",lien_url:"https://chainsaw
