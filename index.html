@@ -3,38 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101020">
 <title>JOG Anime World</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#101020;color:white;font-family:Arial,sans-serif}
-header{text-align:center;padding:28px 12px;background:linear-gradient(135deg,#6c22d9,#ed236b)}
-header h1{margin:0 0 8px}
-nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:15px;background:#19192e}
-button{padding:11px 16px;border:0;border-radius:20px;background:#30304d;color:white;font-weight:bold;cursor:pointer}
-button.active,button:hover{background:#ed236b}
-main{width:92%;max-width:1100px;margin:25px auto}
-.welcome{background:#1b1b35;padding:25px;border-radius:14px;text-align:center}
-h2{color:#ff5d9e}
-#search{width:100%;padding:14px;margin:22px 0;border-radius:10px;border:1px solid #444;background:#19192e;color:white;font-size:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.card{background:#1b1b35;border:1px solid #30304d;border-radius:13px;overflow:hidden}
-.cover{padding:28px 8px;text-align:center;font-size:24px;font-weight:bold;background:linear-gradient(135deg,#442080,#c42a72);overflow-wrap:anywhere}
-.content{padding:15px}
-.content p{color:#ccc;font-size:14px;line-height:1.5}
-.tag{font-size:12px;color:#ff9fc5}
-.link{display:inline-block;background:#ed236b;color:white;padding:9px 12px;border-radius:8px;text-decoration:none}
-.page.hidden,.card.hidden,.hidden{display:none!important}
-.notice{margin-top:25px;background:#20203a;padding:15px;border-radius:8px;font-size:14px;color:#ddd}
-footer{text-align:center;background:#19192e;padding:25px;color:#bbb;font-size:13px}
-.admin-box{background:#1b1b35;border:1px solid #30304d;border-radius:13px;padding:18px;margin:16px 0}
-.admin-box label{display:block;margin:12px 0 6px;color:#ff9fc5}
-.admin-box input,.admin-box textarea,.admin-box select{width:100%;padding:12px;border-radius:8px;border:1px solid #444;background:#19192e;color:white;font:inherit}
-.admin-box textarea{min-height:90px}
-.form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.status{padding:10px;border-radius:8px;background:#20203a;color:#ddd;margin:12px 0}
-.small{font-size:13px;color:#ccc;line-height:1.5}
-.danger{background:#8c2345;margin-top:8px}
+body{margin:0;background:#101020;color:#fff;font-family:Arial,sans-serif}
+header{padding:28px 12px;text-align:center;background:linear-gradient(120deg,#6c22d9,#ed236b)}
+header h1{margin:0;font-size:32px}
+nav{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;padding:14px;background:#15152a;position:sticky;top:0}
+button{border:0;border-radius:8px;padding:11px 15px;background:#ed236b;color:white;font-weight:bold;cursor:pointer}
+nav button{background:#292943}
+nav button.active{background:#ed236b}
+main{max-width:1100px;margin:auto;padding:22px 15px}
+h2{color:#ff6fa1}
+.intro{text-align:center;margin:20px 0 30px}
+p{line-height:1.5}
+.muted{color:#bbb9d0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.card{background:#1b1b35;border:1px solid #29294a;border-radius:14px;overflow:hidden}
+.cover{height:125px;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#39206e,#922752)}
+.cover img{width:100%;height:100%;object-fit:cover}
+.card-body{padding:14px}
+.card h3{color:#ff79a8;margin:4px 0}
+.tag{color:#d6b5ff;font-size:12px;text-transform:uppercase}
+.desc{color:#c2bfd5;font-size:14px;min-height:40px}
+.card a{display:block;text-align:center;text-decoration:none;background:linear-gradient(100deg,#6c22d9,#ed236b);padding:10px;color:white;border-radius:8px}
+input,select,textarea{width:100%;padding:12px;margin:5px 0 12px;border-radius:8px;border:1px solid #414166;background:#121226;color:white;font:inherit}
+.panel{max-width:560px;margin:auto;background:#1b1b35;padding:20px;border-radius:14px}
+section[hidden]{display:none}
+footer{text-align:center;background:#15152a;color:#bbb;padding:22px}
+.notice{background:#292943;padding:12px;border-radius:8px;margin:12px 0;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -44,105 +41,211 @@ footer{text-align:center;background:#19192e;padding:25px;color:#bbb;font-size:13
 </header>
 
 <nav>
-<button class="active" data-page="home">🏠 Accueil</button>
-<button data-page="animes">🍥 Animes</button>
-<button data-page="games">🎮 Jeux vidéo</button>
-<button data-page="admin">🔐 Administration</button>
+<button class="active" onclick="page('accueil',this)">Accueil</button>
+<button onclick="page('animes',this)">Animes</button>
+<button onclick="page('jeux',this)">Jeux vidéo</button>
+<button onclick="page('admin',this)">Administration</button>
 </nav>
 
 <main>
-<section id="home" class="page">
-<div class="welcome">
-<h2>Bienvenue dans JOG Anime World !</h2>
-<p>Découvre tes animes préférés et explore l'univers des jeux vidéo.</p>
+<section id="accueil">
+<div class="intro">
+<h2>Bienvenue dans ton univers !</h2>
+<p class="muted">Découvre des animes et des jeux vidéo, explore tes favoris et partage ta passion.</p>
 </div>
-<h2>🔥 À découvrir</h2>
-<div id="featured" class="grid"></div>
-</section>
-
-<section id="animes" class="page hidden">
-<h2>🍥 Catalogue des animes</h2>
-<div id="animeGrid" class="grid"></div>
-</section>
-
-<section id="games" class="page hidden">
-<h2>🎮 Catalogue des jeux vidéo</h2>
-<div id="gameGrid" class="grid"></div>
-</section>
-
-<section id="admin" class="page hidden">
-<h2>🔐 Administration</h2>
-<div class="admin-box" id="loginPanel">
-<p>Connecte-toi avec ton compte administrateur Supabase.</p>
-<form id="loginForm">
-<label for="email">Adresse e-mail</label>
-<input id="email" type="email" autocomplete="username" required>
-<label for="password">Mot de passe</label>
-<input id="password" type="password" autocomplete="current-password" required>
-<p><button type="submit">Se connecter</button></p>
-</form>
-</div>
-
-<div class="admin-box hidden" id="adminPanel">
-<p id="adminStatus" class="status"></p>
-<button id="logoutButton" type="button">Se déconnecter</button>
-<h2>➕ Ajouter un contenu</h2>
-<p class="small">Ajoute des descriptions et des liens officiels. Pour l'image, indique un lien direct vers une image que tu peux partager.</p>
-
-<form id="contentForm">
-<div class="form-row">
-<div>
-<label for="nom">Nom</label>
-<input id="nom" required maxlength="120">
-</div>
-<div>
-<label for="categorie">Rubrique</label>
-<select id="categorie">
-<option value="anime">Anime</option>
-<option value="jeu">Jeu vidéo</option>
-</select>
-</div>
-<div>
-<label for="tag">Genre</label>
-<input id="tag" maxlength="60" placeholder="Action, sport...">
+<div class="grid">
+<div class="card">
+<div class="cover">🍥</div>
+<div class="card-body">
+<h3>Univers Anime</h3>
+<p class="desc">Retrouve des héros et des aventures inoubliables.</p>
+<button onclick="page('animes',document.querySelectorAll('nav button')[1])">Explorer les animes</button>
 </div>
 </div>
-
-<label for="description">Description</label>
-<textarea id="description" required maxlength="1000"></textarea>
-
-<div class="form-row">
-<div>
-<label for="image_url">Lien de l'image (facultatif)</label>
-<input id="image_url" type="url" placeholder="https://...">
-</div>
-<div>
-<label for="lien_url">Lien officiel</label>
-<input id="lien_url" type="url" required placeholder="https://...">
+<div class="card">
+<div class="cover">🎮</div>
+<div class="card-body">
+<h3>Univers Jeux vidéo</h3>
+<p class="desc">Découvre des jeux et leurs informations.</p>
+<button onclick="page('jeux',document.querySelectorAll('nav button')[2])">Explorer les jeux</button>
 </div>
 </div>
-
-<p><button type="submit">Publier le contenu</button></p>
-</form>
-
-<h2>📚 Publications enregistrées</h2>
-<div id="adminList"></div>
 </div>
 </section>
 
-<input id="search" type="search" placeholder="🔎 Rechercher un anime ou un jeu...">
-<p id="noResults" class="hidden">Aucun contenu trouvé.</p>
+<section id="animes" hidden>
+<div class="intro"><h2>📺 Les Animes</h2><p class="muted">Découvre les séries et films d'animation.</p></div>
+<input id="searchAnime" placeholder="Rechercher un anime..." oninput="render('anime')">
+<div class="grid" id="animeGrid"></div>
+</section>
 
-<div class="notice">
-<strong>ℹ️ Information :</strong>
-Ce site présente des descriptions et des liens vers des pages officielles. Il ne distribue pas de fichiers d'animes ou de jeux protégés.
+<section id="jeux" hidden>
+<div class="intro"><h2>🎮 Jeux vidéo</h2><p class="muted">Explore les jeux vidéo.</p></div>
+<input id="searchGame" placeholder="Rechercher un jeu..." oninput="render('jeu')">
+<div class="grid" id="gameGrid"></div>
+</section>
+
+<section id="admin" hidden>
+<div class="intro"><h2>🔐 Espace administrateur</h2><p class="muted">Connecte-toi pour gérer le catalogue.</p></div>
+<div class="panel">
+<div id="login">
+<label>Adresse e-mail</label>
+<input id="email" type="email" placeholder="Ton e-mail">
+<label>Mot de passe</label>
+<input id="password" type="password" placeholder="Ton mot de passe">
+<button onclick="login()">Se connecter</button>
 </div>
+<div id="management" hidden>
+<p id="connected"></p>
+<h3>Ajouter un contenu</h3>
+<label>Rubrique</label>
+<select id="category"><option value="anime">Anime</option><option value="jeu">Jeu vidéo</option></select>
+<label>Titre</label><input id="title" placeholder="Nom du contenu">
+<label>Description</label><textarea id="description" placeholder="Description"></textarea>
+<label>Lien de l'image (facultatif)</label><input id="image" placeholder="https://...">
+<label>Lien d'information (facultatif)</label><input id="link" placeholder="https://...">
+<label>Genre</label><input id="tag" placeholder="Action, aventure...">
+<button onclick="addContent()">Ajouter</button>
+<button onclick="logout()" style="background:#494965">Déconnexion</button>
+<div id="adminMessage" class="notice" hidden></div>
+<h3>Mes contenus</h3><div id="adminList"></div>
+</div>
+<div id="loginMessage" class="notice" hidden></div>
+</div>
+</section>
 </main>
 
 <footer>
-<p>© 2026 JOG Anime World</p>
+<strong>JOG Anime World</strong>
 <p>Un site pour les passionnés d'animes et de jeux vidéo ❤️</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+const SUPABASE_URL='https://eoonopkhsinnieavwwyj.supabase.co';
+const SUPABASE_KEY='sb_publishable_EHsGDT9xnwtY9sJJaLSzCQ_ZnuNTDzU';
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const starter=[
+{categorie:'anime',titre:'Naruto',description:'Un jeune ninja rêve de devenir Hokage.',tag:'Action · Aventure',emoji:'🍥'},
+{categorie:'anime',titre:'One Piece',description:'Luffy et son équipage recherchent le trésor légendaire.',tag:'Aventure',emoji:'🏴‍☠️'},
+{categorie:'anime',titre:'Dragon Ball',description:'Goku affronte de puissants adversaires.',tag:'Combat',emoji:'🐉'},
+{categorie:'anime',titre:'Blue Lock',description:'Des footballeurs rivalisent pour devenir le meilleur attaquant.',tag:'Sport',emoji:'⚽'},
+{categorie:'anime',titre:'Demon Slayer',description:'Tanjiro lutte contre les démons.',tag:'Action',emoji:'⚔️'},
+{categorie:'anime',titre:'Jujutsu Kaisen',description:'Des exorcistes combattent des fléaux.',tag:'Fantastique',emoji:'👊'},
+{categorie:'anime',titre:'My Hero Academia',description:'Des élèves apprennent à devenir des héros.',tag:'Super-héros',emoji:'🦸'},
+{categorie:'anime',titre:'Attack on Titan',description:'L’humanité lutte pour survivre.',tag:'Action',emoji:'🛡️'},
+{categorie:'anime',titre:'Haikyuu!!',description:'Une équipe de volley veut atteindre les sommets.',tag:'Sport',emoji:'🏐'},
+{categorie:'anime',titre:'Death Note',description:'Un carnet mystérieux bouleverse la vie de Light.',tag:'Mystère',emoji:'📓'},
+{categorie:'anime',titre:'Hunter x Hunter',description:'Gon part à la recherche de son père.',tag:'Aventure',emoji:'🧭'},
+{categorie:'anime',titre:'Bleach',description:'Ichigo protège les humains contre les esprits.',tag:'Action',emoji:'⚔️'},
+{categorie:'anime',titre:'Black Clover',description:'Asta rêve de devenir Empereur-Mage.',tag:'Fantastique',emoji:'🍀'},
+{categorie:'anime',titre:'Tokyo Revengers',description:'Takemichi tente de changer le passé.',tag:'Drame',emoji:'⏳'},
+{categorie:'anime',titre:'Spy x Family',description:'Une famille atypique cache plusieurs secrets.',tag:'Comédie',emoji:'🕵️'},
+{categorie:'anime',titre:'Solo Leveling',description:'Un chasseur progresse dans un monde dangereux.',tag:'Action',emoji:'⚡'},
+{categorie:'anime',titre:'Dr. Stone',description:'La science devient la clé pour reconstruire le monde.',tag:'Science',emoji:'🧪'},
+{categorie:'anime',titre:'One Punch Man',description:'Un héros peut vaincre ses adversaires en un coup.',tag:'Comédie',emoji:'👊'},
+{categorie:'anime',titre:'Fairy Tail',description:'Une guilde de mages vit des aventures.',tag:'Magie',emoji:'✨'},
+{categorie:'anime',titre:'Baki',description:'Des combattants s’affrontent pour devenir les plus forts.',tag:'Combat',emoji:'🥊'},
+{categorie:'jeu',titre:'eFootball',description:'Compose ton équipe et joue au football.',tag:'Sport',emoji:'⚽'},
+{categorie:'jeu',titre:'PES',description:'Un jeu de football populaire.',tag:'Sport',emoji:'🥅'},
+{categorie:'jeu',titre:'Tekken',description:'Des combattants s’affrontent dans des duels.',tag:'Combat',emoji:'🥊'},
+{categorie:'jeu',titre:'Dragon Ball: Sparking!',description:'Des combats spectaculaires dans l’univers Dragon Ball.',tag:'Combat',emoji:'🐉'},
+{categorie:'jeu',titre:'Minecraft',description:'Explore, construis et crée ton monde.',tag:'Création',emoji:'⛏️'},
+{categorie:'jeu',titre:'God of War',description:'Une aventure dans un univers mythologique.',tag:'Aventure',emoji:'🪓'},
+{categorie:'jeu',titre:'Need for Speed',description:'Participe à des courses automobiles.',tag:'Course',emoji:'🏎️'},
+{categorie:'jeu',titre:'Grand Theft Auto',description:'Explore un vaste monde ouvert.',tag:'Action',emoji:'🚘'},
+{categorie:'jeu',titre:'FIFA',description:'Joue au football et compose ton équipe.',tag:'Sport',emoji:'⚽'},
+{categorie:'jeu',titre:'Mortal Kombat',description:'Des combattants se défient dans des duels.',tag:'Combat',emoji:'🥋'},
+{categorie:'jeu',titre:'Street Fighter',description:'Un jeu de combat classique.',tag:'Combat',emoji:'👊'},
+{categorie:'jeu',titre:'Tekken 6',description:'Des combats avec de nombreux personnages.',tag:'Combat',emoji:'🥊'},
+{categorie:'jeu',titre:'Naruto Ultimate Ninja Storm',description:'Des combats inspirés de Naruto.',tag:'Combat',emoji:'🍥'},
+{categorie:'jeu',titre:'The King of Fighters',description:'Des équipes de combattants se rencontrent.',tag:'Combat',emoji:'🔥'},
+{categorie:'jeu',titre:'God Hand',description:'Un jeu d’action et de combat.',tag:'Action',emoji:'✊'},
+{categorie:'jeu',titre:'Gran Turismo',description:'Conduis de nombreuses voitures de course.',tag:'Course',emoji:'🏁'},
+{categorie:'jeu',titre:'Crash Bandicoot',description:'Une aventure de plateforme pleine de défis.',tag:'Aventure',emoji:'🦊'},
+{categorie:'jeu',titre:'Sonic',description:'Cours à grande vitesse avec Sonic.',tag:'Plateforme',emoji:'💨'},
+{categorie:'jeu',titre:'Lego Batman',description:'Une aventure Lego dans l’univers de Batman.',tag:'Aventure',emoji:'🦇'},
+{categorie:'jeu',titre:'Prince of Persia',description:'Explore des niveaux et maîtrise tes mouvements.',tag:'Aventure',emoji:'🗡️'}
+];
+
+let items=[],session=null;
+function safe(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function isGame(x){let c=String(x.categorie??x.category??'').toLowerCase();return c.includes('jeu')||c.includes('game');}
+function title(x){return x.titre??x.title??'Sans titre';}
+
+function page(id,button){
+document.querySelectorAll('main section').forEach(s=>s.hidden=s.id!==id);
+document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+if(button)button.classList.add('active');
+if(id==='admin')refreshSession();
+window.scrollTo(0,0);
+}
+
+function render(type){
+const query=(document.getElementById(type==='anime'?'searchAnime':'searchGame').value||'').toLowerCase();
+const data=items.filter(x=>(type==='jeu')===isGame(x)&&[title(x),x.description,x.tag].join(' ').toLowerCase().includes(query));
+const grid=document.getElementById(type==='anime'?'animeGrid':'gameGrid');
+if(!data.length){grid.innerHTML='<div class="card card-body">Aucun contenu trouvé.</div>';return;}
+grid.innerHTML=data.map(x=>{
+const t=safe(title(x)),d=safe(x.description||''),tag=safe(x.tag||''),img=x.image_url||x.image,link=x.lien_url||x.url;
+return '<article class="card"><div class="cover">'+(img?'<img src="'+safe(img)+'" alt="'+t+'" loading="lazy">':(isGame(x)?'🎮':'🍥'))+'</div><div class="card-body"><span class="tag">'+tag+'</span><h3>'+t+'</h3><p class="desc">'+d+'</p>'+(link?'<a href="'+safe(link)+'" target="_blank" rel="noopener noreferrer">En savoir plus ↗</a>':'')+'</div></article>';
+}).join('');
+}
+
+function renderAll(){render('anime');render('jeu');renderAdminList();}
+async function loadItems(){
+const {data,error}=await db.from('catalogue').select('*').order('created_at',{ascending:false});
+if(!error&&data&&data.length){items=data;}else{items=starter.map((x,i)=>({...x,id:'demo-'+i}));if(error)console.warn(error.message);}
+renderAll();
+}
+function show(id,text){const e=document.getElementById(id);e.textContent=text;e.hidden=false;}
+async function refreshSession(){
+const {data}=await db.auth.getSession();session=data.session;
+document.getElementById('login').hidden=!!session;
+document.getElementById('management').hidden=!session;
+if(session){document.getElementById('connected').textContent='Connecté : '+session.user.email;renderAdminList();}
+}
+async function login(){
+const email=document.getElementById('email').value.trim();
+const password=document.getElementById('password').value;
+const {error}=await db.auth.signInWithPassword({email,password});
+if(error)show('loginMessage','Connexion impossible : '+error.message);
+else{document.getElementById('loginMessage').hidden=true;await refreshSession();}
+}
+async function logout(){await db.auth.signOut();await refreshSession();}
+async function addContent(){
+const titre=document.getElementById('title').value.trim();
+if(!titre){show('adminMessage','Entre un titre.');return;}
+const row={
+categorie:document.getElementById('category').value,
+titre,
+description:document.getElementById('description').value.trim(),
+image_url:document.getElementById('image').value.trim()||null,
+lien_url:document.getElementById('link').value.trim()||null,
+tag:document.getElementById('tag').value.trim()||null
+};
+const {error}=await db.from('catalogue').insert(row);
+if(error){show('adminMessage','Ajout refusé : '+error.message+'. Le compte doit être autorisé dans admin_users.');return;}
+['title','description','image','link','tag'].forEach(id=>document.getElementById(id).value='');
+show('adminMessage','Contenu ajouté avec succès !');
+await loadItems();
+}
+function renderAdminList(){
+const el=document.getElementById('adminList');if(!el||!session)return;
+const data=items.filter(x=>!String(x.id).startsWith('demo-'));
+if(!data.length){el.innerHTML='<p class="muted">Aucun contenu enregistré dans la base.</p>';return;}
+el.innerHTML=data.map(x=>'<div class="notice">'+safe(title(x))+' <button data-id="'+safe(x.id)+'" style="float:right;padding:6px">Supprimer</button><div style="clear:both"></div></div>').join('');
+el.querySelectorAll('[data-id]').forEach(b=>b.onclick=async()=>{
+if(!confirm('Supprimer ce contenu ?'))return;
+const {error}=await db.from('catalogue').delete().eq('id',b.dataset.id);
+if(error){show('adminMessage','Suppression refusée : '+error.message);return;}
+await loadItems();
+});
+}
+db.auth.onAuthStateChange(()=>setTimeout(refreshSession,0));
+loadItems();
+refreshSession();
+</script>
+</body>
+  </html>
