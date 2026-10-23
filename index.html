@@ -2,18 +2,21 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>JOG Anime World</title>
+
+<meta name="description" content="JOG Anime World : découvre les animes et les jeux vidéo dans un univers néon.">
 
 <style>
 :root {
-  --bg: #030513;
-  --panel: #080e25;
+  --bg: #050713;
+  --panel: #0c1230;
   --blue: #00e5ff;
-  --pink: #ff26e8;
-  --purple: #802cff;
+  --pink: #ff35df;
+  --purple: #8b5cf6;
   --text: #ffffff;
-  --muted: #c4d1f5;
+  --muted: #b9c5e8;
 }
 
 * {
@@ -23,15 +26,14 @@
 
 body {
   margin: 0;
-  background:
-    radial-gradient(ellipse at 50% 0%, #101a4a 0%, transparent 50%),
-    var(--bg);
-  color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 .topbar {
@@ -39,38 +41,41 @@ a {
   top: 0;
   z-index: 10;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 18px;
-  padding: 15px 4%;
-  background: #050817f5;
-  border-bottom: 2px solid var(--pink);
-  box-shadow: 0 0 18px #8b2cff66;
+  padding: 16px 5%;
+  background: rgba(5, 7, 19, 0.96);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.12);
+  flex-wrap: wrap;
 }
 
 .logo {
-  color: white;
+  font-size: 23px;
   font-weight: 900;
-  font-size: clamp(18px, 3vw, 29px);
-  font-style: italic;
-  text-decoration: none;
+  color: var(--blue);
   text-shadow: 0 0 12px var(--blue);
 }
 
 .logo span {
-  color: var(--pink);
+  display: block;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: white;
+  margin-top: 4px;
 }
 
 nav {
   display: flex;
-  flex-wrap: wrap;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 nav a {
-  text-decoration: none;
-  font-weight: bold;
   font-size: 14px;
+  color: var(--muted);
+  transition: 0.2s;
 }
 
 nav a:hover {
@@ -78,314 +83,281 @@ nav a:hover {
 }
 
 .search {
-  min-width: 160px;
-  max-width: 340px;
-  width: 30%;
+  flex: 1;
+  min-width: 190px;
+  max-width: 300px;
 }
 
 .search input {
   width: 100%;
   padding: 12px 15px;
+  border: 1px solid var(--blue);
+  border-radius: 25px;
+  background: #090e24;
   color: white;
-  background: #101735;
-  border: 1px solid #2858c9;
-  border-radius: 30px;
   outline: none;
 }
 
-.search input:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 12px #00e5ff66;
-}
-
 .hero {
+  min-height: 390px;
+  padding: 85px 20px;
   text-align: center;
-  padding: 65px 15px 40px;
-  min-height: 340px;
   background:
-    radial-gradient(ellipse at 15% 50%, #073c91aa, transparent 50%),
-    radial-gradient(ellipse at 85% 50%, #83128aaa, transparent 50%),
-    linear-gradient(135deg, #080d26, #160a32, #07152b);
-  border-bottom: 1px solid #6424c9;
+    radial-gradient(ellipse at 20% 30%, rgba(0, 229, 255, 0.20), transparent 40%),
+    radial-gradient(ellipse at 80% 60%, rgba(255, 53, 223, 0.18), transparent 40%),
+    linear-gradient(135deg, #080d25, #120a2b, #050713);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.5);
 }
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(38px, 8vw, 85px);
-  line-height: 1.1;
-  font-weight: 1000;
-  font-style: italic;
-  text-transform: uppercase;
-  text-shadow:
-    0 0 10px var(--blue),
-    0 0 35px var(--purple);
+  font-size: clamp(36px, 7vw, 70px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px var(--blue), 0 0 35px var(--purple);
 }
 
 .hero h1 span {
-  display: block;
-  color: var(--pink);
-  text-shadow: 0 0 20px #ff26e888;
+  color: var(--blue);
 }
 
 .slogan {
-  font-size: clamp(16px, 3vw, 25px);
-  font-style: italic;
+  color: var(--muted);
+  font-size: clamp(16px, 3vw, 22px);
   margin: 22px 0 30px;
-  color: #f4eaff;
 }
 
 .hero-buttons {
   display: flex;
   justify-content: center;
+  gap: 15px;
   flex-wrap: wrap;
-  gap: 18px;
 }
 
 .big-button {
-  min-width: 220px;
-  padding: 15px 25px;
-  text-decoration: none;
-  font-weight: 900;
-  font-size: 18px;
-  border: 2px solid var(--pink);
-  border-radius: 13px;
-  background: #270c49;
-  box-shadow: 0 0 15px #ff26e855;
-}
-
-.big-button.games {
-  border-color: var(--blue);
-  background: #052849;
-  box-shadow: 0 0 15px #00e5ff44;
+  display: inline-block;
+  padding: 14px 22px;
+  border: 1px solid var(--blue);
+  border-radius: 7px;
+  background: rgba(0, 229, 255, 0.09);
+  color: var(--blue);
+  font-weight: bold;
+  transition: 0.25s;
 }
 
 .big-button:hover {
+  background: var(--blue);
+  color: #050713;
+  box-shadow: 0 0 22px var(--blue);
   transform: translateY(-3px);
-  filter: brightness(1.3);
+}
+
+.big-button.games {
+  border-color: var(--pink);
+  color: var(--pink);
+  background: rgba(255, 53, 223, 0.08);
+}
+
+.big-button.games:hover {
+  background: var(--pink);
+  color: #050713;
+  box-shadow: 0 0 22px var(--pink);
 }
 
 main {
-  width: min(1400px, 100%);
+  width: min(1250px, 92%);
   margin: auto;
-  padding: 25px 4%;
-}
-
-.sections {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
 }
 
 .collection {
-  min-width: 0;
-  padding: 20px;
-  background: linear-gradient(145deg, #0d1230, #080b1c);
-  border: 1px solid var(--purple);
-  border-radius: 18px;
-  box-shadow: 0 0 18px #802cff22;
-}
-
-.collection.games {
-  border-color: #006bff;
-  box-shadow: 0 0 18px #00e5ff18;
+  padding: 48px 0 20px;
 }
 
 .collection-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
 }
 
 .collection-header h2 {
-  margin: 0;
-  font-size: clamp(21px, 3vw, 29px);
+  font-size: 30px;
+  margin: 0 0 8px;
+  color: var(--blue);
 }
 
 .collection-header p {
+  margin: 0;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
+}
+
+.games .collection-header h2 {
+  color: var(--pink);
 }
 
 .see-all {
-  white-space: nowrap;
-  text-decoration: none;
-  color: var(--pink);
-  border: 1px solid var(--pink);
-  padding: 9px 12px;
-  border-radius: 20px;
-  font-size: 12px;
+  color: var(--blue);
+  font-weight: bold;
 }
 
 .games .see-all {
-  color: var(--blue);
-  border-color: var(--blue);
+  color: var(--pink);
 }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 17px;
 }
 
 .card {
-  min-width: 0;
   overflow: hidden;
-  background: #080c20;
-  border: 1px solid #30205e;
+  background: var(--panel);
+  border: 1px solid rgba(0, 229, 255, 0.2);
   border-radius: 10px;
-  transition: .2s;
+  transition: 0.25s;
+  min-width: 0;
+}
+
+.games .card {
+  border-color: rgba(255, 53, 223, 0.22);
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  border-color: var(--pink);
-  box-shadow: 0 0 15px #ff26e833;
+  transform: translateY(-5px);
+  border-color: var(--blue);
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.18);
 }
 
 .games .card:hover {
-  border-color: var(--blue);
+  border-color: var(--pink);
+  box-shadow: 0 0 18px rgba(255, 53, 223, 0.18);
 }
 
 .card img {
   display: block;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  background: linear-gradient(135deg, #17285a, #41165f);
+  background: #111a3c;
 }
 
 .card h3 {
-  margin: 0;
-  padding: 10px 7px;
-  font-size: 13px;
-  overflow-wrap: anywhere;
+  min-height: 42px;
+  padding: 0 10px;
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 .card a {
   display: block;
-  padding: 9px 4px;
+  margin: 10px;
+  padding: 10px 8px;
   text-align: center;
-  text-decoration: none;
-  color: white;
-  background: #271052;
-  border-top: 1px solid #402078;
-  font-size: 12px;
+  border: 1px solid var(--blue);
+  border-radius: 5px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .games .card a {
-  background: #062541;
-  border-top-color: #124d81;
+  border-color: var(--pink);
+  color: var(--pink);
 }
 
 .card a:hover {
-  background: #6220a4;
+  background: var(--blue);
+  color: #050713;
 }
 
 .games .card a:hover {
-  background: #075e86;
+  background: var(--pink);
+  color: #050713;
+}
+
+.no-results {
+  display: none;
+  padding: 20px;
+  color: var(--muted);
+  text-align: center;
 }
 
 .features {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 15px;
-  padding: 30px 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 50px 0;
 }
 
 .feature {
-  padding: 15px;
+  padding: 24px 18px;
   text-align: center;
-  background: #080d20;
-  border-radius: 12px;
-  border: 1px solid #182950;
+  background: var(--panel);
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  border-radius: 10px;
 }
 
-.feature strong {
-  display: block;
+.feature h3 {
   color: var(--blue);
-  margin-bottom: 7px;
 }
 
 .feature p {
-  margin: 0;
   color: var(--muted);
-  font-size: 13px;
-}
-
-footer {
-  padding: 25px 15px;
-  text-align: center;
-  background: #040612;
-  border-top: 1px solid #392070;
-  color: #b7c5e8;
-  font-size: 13px;
-}
-
-.footer-logo {
-  font-size: 25px;
-  font-weight: 900;
-  font-style: italic;
-  color: var(--blue);
-}
-
-footer p {
   line-height: 1.6;
 }
 
-@media (max-width: 900px) {
-  .topbar {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+footer {
+  padding: 30px 15px;
+  text-align: center;
+  background: #03040c;
+  border-top: 1px solid rgba(0, 229, 255, 0.3);
+  color: var(--muted);
+  line-height: 1.8;
+}
 
-  .search {
-    width: 100%;
-    max-width: none;
-  }
+footer strong {
+  color: var(--blue);
+}
 
-  .sections {
-    grid-template-columns: 1fr;
-  }
-
+@media (max-width: 950px) {
   .cards {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 550px) {
-  .hero {
-    padding-top: 50px;
-  }
-
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .features {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .collection {
-    padding: 13px;
-  }
-
-  .collection-header {
-    align-items: flex-start;
-  }
-
-  .collection-header h2 {
-    font-size: 20px;
-  }
-
-  .see-all {
-    padding: 8px;
+@media (max-width: 650px) {
+  .topbar {
+    justify-content: center;
+    text-align: center;
   }
 
   nav {
     justify-content: center;
+  }
+
+  .search {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .hero {
+    padding: 65px 15px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .collection-header h2 {
+    font-size: 25px;
   }
 }
 </style>
@@ -394,7 +366,10 @@ footer p {
 <body>
 
 <header class="topbar">
-  <a class="logo" href="#accueil">JOG <span>ANIME WORLD</span></a>
+  <a class="logo" href="#accueil">
+    JOG
+    <span>ANIME WORLD</span>
+  </a>
 
   <nav>
     <a href="#accueil">⌂ Accueil</a>
@@ -403,124 +378,247 @@ footer p {
   </nav>
 
   <div class="search">
-    <input id="search" type="search"
+    <input
+      id="search"
+      type="search"
       placeholder="Rechercher un anime ou un jeu..."
-      oninput="filterCards()">
+      aria-label="Rechercher dans le catalogue"
+      oninput="filterCards()"
+    >
   </div>
 </header>
 
 <section class="hero" id="accueil">
   <h1>JOG <span>ANIME WORLD</span></h1>
+
   <p class="slogan">Entre dans la légende, vis ta passion !</p>
 
   <div class="hero-buttons">
-    <a class="big-button" href="#animes">▣ ANIMES　→</a>
-    <a class="big-button games" href="#jeux">🎮 JEUX VIDÉO　→</a>
+    <a class="big-button" href="#animes">🎌 DÉCOUVRIR LES ANIMES</a>
+    <a class="big-button games" href="#jeux">🎮 DÉCOUVRIR LES JEUX</a>
   </div>
 </section>
 
 <main>
-  <div class="sections">
 
-    <section class="collection" id="animes">
-      <div class="collection-header">
-        <div>
-          <h2>🎌 Animes</h2>
-          <p>Découvre les grands animes et leurs univers !</p>
-        </div>
-        <a class="see-all" href="#animes">Voir tout →</a>
+  <section class="collection" id="animes">
+    <div class="collection-header">
+      <div>
+        <h2>🎌 Univers Anime</h2>
+        <p>Retrouve tes séries préférées et découvre de nouveaux univers.</p>
       </div>
-      <div class="cards" id="animeGrid"></div>
-    </section>
+      <a class="see-all" href="#animes">70 ANIMES ↓</a>
+    </div>
 
-    <section class="collection games" id="jeux">
-      <div class="collection-header">
-        <div>
-          <h2>🎮 Jeux vidéo</h2>
-          <p>Du fun, de l'aventure et du challenge !</p>
-        </div>
-        <a class="see-all" href="#jeux">Voir tout →</a>
+    <div class="cards" id="animeGrid"></div>
+    <p class="no-results" id="animeEmpty">Aucun anime trouvé.</p>
+  </section>
+
+  <section class="collection games" id="jeux">
+    <div class="collection-header">
+      <div>
+        <h2>🎮 Univers Gaming</h2>
+        <p>Explore les jeux d'action, de sport, d'aventure et de combat.</p>
       </div>
-      <div class="cards" id="gameGrid"></div>
-    </section>
+      <a class="see-all" href="#jeux">60 JEUX ↓</a>
+    </div>
 
-  </div>
+    <div class="cards" id="gameGrid"></div>
+    <p class="no-results" id="gameEmpty">Aucun jeu trouvé.</p>
+  </section>
 
   <section class="features">
     <div class="feature">
-      <strong>⚡ Une seule passion</strong>
-      <p>Animes et jeux vidéo</p>
+      <h3>⚡ Univers Anime</h3>
+      <p>Un catalogue pour retrouver les noms des animes et explorer leurs univers.</p>
     </div>
+
     <div class="feature">
-      <strong>☆ Du contenu varié</strong>
-      <p>Toujours plus de découvertes</p>
+      <h3>🎮 Univers Gaming</h3>
+      <p>Découvre des jeux de combat, de sport, d'aventure et bien plus.</p>
     </div>
+
     <div class="feature">
-      <strong>✓ Liens fiables</strong>
-      <p>Accès aux sites officiels</p>
-    </div>
-    <div class="feature">
-      <strong>♡ Une communauté</strong>
-      <p>Rejoins l'aventure !</p>
+      <h3>🔎 Recherche rapide</h3>
+      <p>Utilise la barre de recherche pour retrouver rapidement un titre.</p>
     </div>
   </section>
+
 </main>
 
 <footer>
-  <div class="footer-logo">JOG ANIME WORLD</div>
-  <p>Entre dans la légende, vis ta passion !</p>
-  <p>© 2026 JOG Anime World. Tous droits réservés.</p>
+  <strong>JOG ANIME WORLD</strong><br>
+  Entre dans la légende, vis ta passion !<br>
+  <small>Site de découverte consacré aux animes et aux jeux vidéo.</small>
 </footer>
 
 <script>
 const animes = [
-  ["One Piece", "https://one-piece.com/"],
-  ["Naruto", "https://naruto-official.com/"],
-  ["Dragon Ball", "https://dragon-ball-official.com/"],
-  ["Demon Slayer", "https://demonslayer-anime.com/"],
-  ["Jujutsu Kaisen", "https://jujutsukaisen.jp/"],
-  ["Blue Lock", "https://www.crunchyroll.com/"],
-  ["Solo Leveling", "https://sololeveling-anime.net/"],
-  ["My Hero Academia", "https://heroaca.com/"],
-  ["Attack on Titan", "https://shingeki.tv/"],
-  ["Haikyu!!", "https://haikyu.jp/"],
-  ["Bleach", "https://bleach-anime.com/"],
-  ["Black Clover", "https://bclover.jp/"],
-  ["Spy x Family", "https://spy-family.net/"],
-  ["Chainsaw Man", "https://chainsawman.dog/"],
-  ["Pokémon", "https://www.pokemon.com/"]
+  ["One Piece","https://one-piece.com/"],
+  ["Naruto","https://naruto-official.com/"],
+  ["Dragon Ball","https://dragon-ball-official.com/"],
+  ["Blue Lock","https://bluelock-pr.com/"],
+  ["Demon Slayer","https://demonslayer-anime.com/"],
+  ["Jujutsu Kaisen","https://jujutsukaisen.jp/"],
+  ["My Hero Academia","https://heroaca.com/"],
+  ["Attack on Titan","https://shingeki.tv/"],
+  ["Solo Leveling","https://sololeveling-anime.net/"],
+  ["Haikyu!!","https://haikyu.jp/"],
+  ["Death Note","https://www.viz.com/"],
+  ["Hunter x Hunter","https://www.viz.com/"],
+  ["Bleach","https://bleach-anime.com/"],
+  ["Black Clover","https://bclover.jp/"],
+  ["Spy x Family","https://spy-family.net/"],
+  ["Tokyo Revengers","https://tokyo-revengers-anime.com/"],
+  ["Chainsaw Man","https://chainsawman.dog/"],
+  ["Dr. Stone","https://dr-stone.jp/"],
+  ["Fairy Tail","https://fairytail100yq.com/"],
+  ["Sword Art Online","https://www.swordart-online.net/"],
+  ["Vinland Saga","https://vinlandsaga.jp/"],
+  ["Mob Psycho 100","https://mobpsycho100.com/"],
+  ["JoJo's Bizarre Adventure","https://jojo-portal.com/"],
+  ["Baki","https://www.netflix.com/"],
+  ["Fire Force","https://fireforce-anime.jp/"],
+  ["Mashle","https://mashle.pw/"],
+  ["Re:Zero","https://re-zero-anime.jp/"],
+  ["Kuroko's Basketball","https://www.kurobas.com/"],
+  ["Captain Tsubasa","https://captain-tsubasa.com/"],
+  ["Pokémon","https://www.pokemon.com/"],
+  ["Digimon","https://digimon.net/"],
+  ["Inazuma Eleven","https://www.inazuma.jp/"],
+  ["Fullmetal Alchemist","https://www.aniplex.co.jp/"],
+  ["The Seven Deadly Sins","https://www.netflix.com/"],
+  ["Tokyo Ghoul","https://www.viz.com/"],
+  ["Code Geass","https://geass.jp/"],
+  ["Steins;Gate","https://steinsgate.jp/"],
+  ["Psycho-Pass","https://psycho-pass.com/"],
+  ["One Punch Man","https://onepunchman-anime.net/"],
+  ["Frieren","https://frieren-anime.jp/"],
+  ["The Apothecary Diaries","https://kusuriyanohitorigoto.jp/"],
+  ["Dan Da Dan","https://anime-dandadan.com/"],
+  ["Kaiju No. 8","https://kaiju-no8.net/"],
+  ["Hell's Paradise","https://www.jigokuraku.com/"],
+  ["The Promised Neverland","https://neverland-anime.com/"],
+  ["Assassination Classroom","https://ansatsu-anime.com/"],
+  ["Noragami","https://noragami-anime.net/"],
+  ["Soul Eater","https://www.bones.co.jp/"],
+  ["Blue Exorcist","https://blueexorcist.com/"],
+  ["Black Butler","https://www.kuroshitsuji.tv/"],
+  ["Overlord","https://overlord-anime.com/"],
+  ["That Time I Got Reincarnated as a Slime","https://www.ten-sura.com/"],
+  ["Mushoku Tensei","https://mushokutensei.jp/"],
+  ["Konosuba","https://konosuba.com/"],
+  ["No Game No Life","https://ngnl.jp/"],
+  ["The Rising of the Shield Hero","https://shieldhero-anime.jp/"],
+  ["Classroom of the Elite","https://you-zitsu.com/"],
+  ["Bungo Stray Dogs","https://bungosd.com/"],
+  ["Hajime no Ippo","https://ippo.fandom.com/"],
+  ["Slam Dunk","https://slamdunk-movie.jp/"],
+  ["Initial D","https://initiald.jp/"],
+  ["Your Lie in April","https://www.kimiuso.jp/"],
+  ["Violet Evergarden","https://violet-evergarden.jp/"],
+  ["Fruits Basket","https://fruba.jp/"],
+  ["Sailor Moon","https://sailormoon-official.com/"],
+  ["Cardcaptor Sakura","https://ccsakura-official.com/"],
+  ["Yu-Gi-Oh!","https://www.konami.com/yugioh/"],
+  ["Lupin III","https://www.lupin-3rd.net/"],
+  ["Trigun","https://trigun-anime.com/"],
+  ["Rurouni Kenshin","https://rurouni-kenshin.com/"]
 ];
 
 const games = [
-  ["Minecraft", "https://www.minecraft.net/"],
-  ["Fortnite", "https://www.fortnite.com/"],
-  ["Genshin Impact", "https://genshin.hoyoverse.com/"],
-  ["Call of Duty", "https://www.callofduty.com/"],
-  ["GTA V", "https://www.rockstargames.com/"],
-  ["Free Fire", "https://ff.garena.com/"],
-  ["Roblox", "https://www.roblox.com/"],
-  ["eFootball", "https://www.konami.com/efootball/"],
-  ["EA SPORTS FC", "https://www.ea.com/games/ea-sports-fc"],
-  ["Tekken 8", "https://tekken.com/"],
-  ["Street Fighter 6", "https://www.streetfighter.com/"],
-  ["Dragon Ball: Sparking! ZERO", "https://www.bandainamcoent.com/"],
-  ["Among Us", "https://www.innersloth.com/games/among-us/"],
-  ["Rocket League", "https://www.rocketleague.com/"],
-  ["Sonic", "https://www.sonicthehedgehog.com/"]
+  ["Minecraft","https://www.minecraft.net/"],
+  ["Fortnite","https://www.fortnite.com/"],
+  ["Roblox","https://www.roblox.com/"],
+  ["Free Fire","https://ff.garena.com/"],
+  ["PUBG Mobile","https://www.pubgmobile.com/"],
+  ["Genshin Impact","https://genshin.hoyoverse.com/"],
+  ["Honkai: Star Rail","https://hsr.hoyoverse.com/"],
+  ["Zenless Zone Zero","https://zenless.hoyoverse.com/"],
+  ["EA SPORTS FC","https://www.ea.com/games/ea-sports-fc"],
+  ["eFootball","https://www.konami.com/efootball/"],
+  ["Call of Duty","https://www.callofduty.com/"],
+  ["Brawl Stars","https://supercell.com/"],
+  ["Clash of Clans","https://supercell.com/"],
+  ["Clash Royale","https://supercell.com/"],
+  ["League of Legends","https://www.leagueoflegends.com/"],
+  ["Valorant","https://playvalorant.com/"],
+  ["Overwatch 2","https://overwatch.blizzard.com/"],
+  ["Rocket League","https://www.rocketleague.com/"],
+  ["Apex Legends","https://www.ea.com/games/apex-legends"],
+  ["Grand Theft Auto V","https://www.rockstargames.com/"],
+  ["Red Dead Redemption 2","https://www.rockstargames.com/"],
+  ["The Sims 4","https://www.ea.com/games/the-sims"],
+  ["Among Us","https://www.innersloth.com/games/among-us/"],
+  ["Stumble Guys","https://www.stumbleguys.com/"],
+  ["Terraria","https://terraria.org/"],
+  ["Stardew Valley","https://www.stardewvalley.net/"],
+  ["Fall Guys","https://www.fallguys.com/"],
+  ["Hollow Knight","https://www.hollowknight.com/"],
+  ["Sonic","https://www.sonicthehedgehog.com/"],
+  ["Super Mario","https://mario.nintendo.com/"],
+  ["The Legend of Zelda","https://www.zelda.com/"],
+  ["Pokémon Games","https://www.pokemon.com/"],
+  ["Street Fighter 6","https://www.streetfighter.com/"],
+  ["Tekken 8","https://tekken.com/"],
+  ["Dragon Ball: Sparking! ZERO","https://www.bandainamcoent.com/"],
+  ["God of War","https://www.playstation.com/"],
+  ["Horizon Forbidden West","https://www.playstation.com/"],
+  ["Gran Turismo 7","https://www.gran-turismo.com/"],
+  ["Ghost of Tsushima","https://www.playstation.com/"],
+  ["The Last of Us","https://www.playstation.com/"],
+  ["Elden Ring","https://en.bandainamcoent.eu/"],
+  ["Dark Souls","https://en.bandainamcoent.eu/"],
+  ["Sekiro","https://www.sekirothegame.com/"],
+  ["Resident Evil","https://www.residentevil.com/"],
+  ["Monster Hunter","https://www.monsterhunter.com/"],
+  ["Final Fantasy","https://www.square-enix-games.com/"],
+  ["Kingdom Hearts","https://www.kingdomhearts.com/"],
+  ["Sonic Frontiers","https://www.sonicthehedgehog.com/"],
+  ["Animal Crossing","https://animal-crossing.com/"],
+  ["Splatoon 3","https://splatoon.nintendo.com/"],
+  ["Super Smash Bros. Ultimate","https://www.smashbros.com/"],
+  ["Mario Kart 8 Deluxe","https://mariokart8.nintendo.com/"],
+  ["Luigi's Mansion","https://www.nintendo.com/"],
+  ["Cuphead","https://cupheadgame.com/"],
+  ["Celeste","https://www.celestegame.com/"],
+  ["Undertale","https://undertale.com/"],
+  ["Brawlhalla","https://www.brawlhalla.com/"],
+  ["Warframe","https://www.warframe.com/"],
+  ["Destiny 2","https://www.destinythegame.com/"],
+  ["The Elder Scrolls Online","https://www.elderscrollsonline.com/"]
 ];
 
-function createCards(items, target) {
+function createCards(items, target, emptyTarget, category) {
   const grid = document.getElementById(target);
+  const empty = document.getElementById(emptyTarget);
 
   items.forEach(([name, url]) => {
     const card = document.createElement("article");
     card.className = "card";
+    card.dataset.category = category;
 
     const img = document.createElement("img");
     img.loading = "lazy";
-    img.alt = name;
-    img.src = "https://placehold.co/400x520/101b38/00e5ff?text="
-      + encodeURIComponent(name);
+    img.alt = "Illustration de " + name;
+
+    // Illustration stylisée générée automatiquement.
+    // Elle sert de remplacement si aucune affiche n'est ajoutée.
+    img.src = "https://placehold.co/480x360/101b38/00e5ff?text=" +
+      encodeURIComponent(name);
+
+    img.onerror = function () {
+      this.onerror = null;
+      this.src = "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360">' +
+          '<rect width="100%" height="100%" fill="#101b38"/>' +
+          '<text x="50%" y="50%" fill="#00e5ff" font-size="25" ' +
+          'font-family="Arial" text-anchor="middle" dominant-baseline="middle">' +
+          name.replace(/&/g, "&amp;").replace(/</g, "&lt;") +
+          '</text></svg>'
+        );
+    };
 
     const title = document.createElement("h3");
     title.textContent = name;
@@ -529,23 +627,54 @@ function createCards(items, target) {
     link.href = url;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-    link.textContent = "Découvrir →";
+    link.textContent = "Découvrir ↗";
+    link.setAttribute("aria-label", "Découvrir " + name);
 
-    card.append(img, title, link);
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(link);
     grid.appendChild(card);
   });
+
+  empty.style.display = items.length ? "none" : "block";
 }
 
-createCards(animes, "animeGrid");
-createCards(games, "gameGrid");
+createCards(animes, "animeGrid", "animeEmpty", "anime");
+createCards(games, "gameGrid", "gameEmpty", "game");
 
 function filterCards() {
-  const query = document.getElementById("search").value.toLowerCase();
+  const query = document.getElementById("search").value
+    .trim()
+    .toLocaleLowerCase("fr");
 
-  document.querySelectorAll(".card").forEach(card => {
-    card.style.display =
-      card.innerText.toLowerCase().includes(query) ? "" : "none";
+  const animeCards = document.querySelectorAll(
+    '#animeGrid .card'
+  );
+
+  const gameCards = document.querySelectorAll(
+    '#gameGrid .card'
+  );
+
+  let animeCount = 0;
+  let gameCount = 0;
+
+  animeCards.forEach(card => {
+    const visible = card.innerText.toLocaleLowerCase("fr").includes(query);
+    card.style.display = visible ? "" : "none";
+    if (visible) animeCount++;
   });
+
+  gameCards.forEach(card => {
+    const visible = card.innerText.toLocaleLowerCase("fr").includes(query);
+    card.style.display = visible ? "" : "none";
+    if (visible) gameCount++;
+  });
+
+  document.getElementById("animeEmpty").style.display =
+    animeCount === 0 ? "block" : "none";
+
+  document.getElementById("gameEmpty").style.display =
+    gameCount === 0 ? "block" : "none";
 }
 </script>
 
