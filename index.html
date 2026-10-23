@@ -2,332 +2,159 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#100c25">
-<meta name="description" content="JOG Anime World : découvre des animes, des jeux vidéo et leurs sites officiels.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JOG Anime World</title>
-
 <style>
-:root {
-  --fond:#090b19;
-  --carte:#15182e;
-  --carte2:#202342;
-  --violet:#8b2cf5;
-  --rose:#f72585;
-  --bleu:#36a8ff;
-  --texte:#ffffff;
-  --secondaire:#c4c7df;
-}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--fond);color:var(--texte);
-  font-family:Arial,Helvetica,sans-serif;
-}
-a{color:inherit}
-header{
-  padding:18px 12px;text-align:center;
-  background:linear-gradient(120deg,#35136e,#7a1eae,#e91e75);
-}
-header h1{font-size:clamp(27px,5vw,43px);margin:0 0 8px}
-header p{margin:0;font-size:16px}
-nav{
-  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
-  padding:12px;background:#111328;
-  position:sticky;top:0;z-index:10;
-  border-bottom:1px solid #30294d;
-}
-nav a{
-  text-decoration:none;background:#252642;
-  padding:10px 14px;border-radius:9px;font-size:14px;
-}
-nav a:hover,nav a:focus{background:var(--violet)}
-.hero{
-  position:relative;max-width:1450px;margin:auto;
-  min-height:210px;background:#19142e;
-  overflow:hidden;text-align:center;
-}
-.hero img{
-  width:100%;height:clamp(220px,37vw,440px);
-  display:block;object-fit:cover;
-}
-.hero-fallback{
-  padding:55px 15px;
-  background:radial-gradient(circle at center,#7027bd,#111328 70%);
-}
-.hero-fallback h2{font-size:clamp(28px,6vw,56px);margin:10px}
-.hero-fallback p{font-size:18px}
-.hero-actions{
-  display:flex;gap:10px;justify-content:center;
-  flex-wrap:wrap;padding:12px;
-}
-button,.button{
-  border:0;cursor:pointer;text-decoration:none;
-  display:inline-block;color:white;
-  padding:11px 15px;border-radius:9px;
-  background:linear-gradient(120deg,var(--violet),var(--rose));
-  font-weight:bold;font-size:14px;
-}
-button:hover,.button:hover{filter:brightness(1.15)}
-button:focus-visible,a:focus-visible,input:focus-visible{
-  outline:2px solid white;outline-offset:3px;
-}
-.intro{text-align:center;padding:25px 12px 5px}
-.intro h2{margin-bottom:8px}
-.intro p{color:var(--secondaire)}
-.search-area{padding:12px}
-#search{
-  display:block;width:100%;max-width:720px;margin:10px auto;
-  padding:15px;border:1px solid #484768;border-radius:12px;
-  background:#171a32;color:white;font-size:16px;
-}
-.filters{
-  display:flex;justify-content:center;gap:9px;
-  flex-wrap:wrap;padding:10px 12px 20px;
-}
-.filters button{background:#252642}
-.filters button.active{background:linear-gradient(120deg,var(--violet),var(--rose))}
-section.content{
-  max-width:1450px;margin:auto;padding:15px;
-  scroll-margin-top:80px;
-}
-.section-title{
-  border-left:5px solid var(--rose);padding-left:12px;
-  margin:10px 0 18px;
-}
-.section-description{color:var(--secondaire);margin-bottom:18px}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(165px,1fr));
-  gap:15px;
-}
-.card{
-  background:var(--carte);border:1px solid #303453;
-  border-radius:13px;overflow:hidden;min-width:0;
-  transition:transform .2s,border-color .2s;
-}
-.card:hover{transform:translateY(-4px);border-color:var(--rose)}
-.poster{
-  width:100%;height:225px;object-fit:cover;
-  display:block;background:#252642;
-}
-.info{padding:12px}
-.info h3{font-size:16px;margin:7px 0}
-.info p{color:var(--secondaire);font-size:13px;line-height:1.5}
-.tag{color:#e4aaff;font-size:12px}
-.card-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
-.card-actions a,.card-actions button{
-  font-size:12px;padding:9px 10px;
-}
-.official{flex:1;text-align:center}
-.favorite{background:#303352}
-.favorite.saved{background:#bd236d}
-.empty{color:var(--secondaire);grid-column:1/-1;text-align:center;padding:25px}
-#status{text-align:center;color:#c4c7df;padding:8px}
-footer{
-  margin-top:35px;padding:28px 15px;background:#111328;
-  border-top:1px solid #303453;text-align:center;color:#c4c7df;
-}
-footer strong{color:white}
-footer a{color:#e2a4ff}
-.small{font-size:12px;line-height:1.6}
-.admin-box{
-  max-width:700px;margin:20px auto;background:var(--carte);
-  border:1px solid #393657;border-radius:14px;padding:18px;
-}
-.admin-box label{display:block;margin:12px 0 6px}
-.admin-box input,.admin-box select,.admin-box textarea{
-  width:100%;padding:12px;border-radius:8px;
-  background:#0f1227;border:1px solid #414363;color:white;
-}
-.admin-box textarea{min-height:90px;resize:vertical}
-.hidden{display:none!important}
-@media(max-width:480px){
-  nav a{padding:9px 10px;font-size:12px}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-  .poster{height:175px}
-  .info{padding:9px}
-  .info h3{font-size:14px}
-  .card-actions a,.card-actions button{font-size:11px;padding:8px}
-  section.content{padding:10px}
-}
+body{margin:0;background:#0b0914;color:white;font-family:Arial,sans-serif}
+header{background:linear-gradient(120deg,#451078,#14112c,#a51c77);padding:28px 15px;text-align:center}
+header h1{font-size:clamp(28px,6vw,48px);margin:8px}
+header p{color:#eee}
+nav{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:15px;background:#151124}
+button,a{cursor:pointer}
+nav a{color:white;text-decoration:none;padding:10px}
+main{max-width:1100px;margin:auto;padding:18px}
+input{width:100%;padding:14px;border-radius:10px;border:1px solid #8052a8;background:#191529;color:white;font-size:16px;margin:12px 0 20px}
+h2{color:#dba6ff;border-bottom:1px solid #49305c;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:15px}
+.card{background:#191529;border:1px solid #35254b;border-radius:12px;overflow:hidden}
+.card img{width:100%;height:170px;object-fit:cover;background:#29213b}
+.card h3{font-size:16px;padding:0 10px}
+.card a{display:block;text-align:center;background:#732fc1;color:white;text-decoration:none;padding:11px;margin:10px;border-radius:7px}
+.card a:hover{background:#a52e94}
+.note{color:#c9c0d8;font-size:13px}
+footer{text-align:center;padding:25px;color:#bbb}
 </style>
 </head>
-
 <body>
-
-<header id="accueil">
-  <h1>⚡ JOG Anime World ⚡</h1>
-  <p>Entre dans la légende, vis ta passion !</p>
+<header>
+<h1>🌌 JOG Anime World</h1>
+<p>Entre dans la légende, vis ta passion !</p>
+<p>🎌 Univers Anime • 🎮 Univers Gaming</p>
 </header>
 
-<nav aria-label="Navigation principale">
-  <a href="#accueil">🏠 Accueil</a>
-  <a href="#animes">🔥 Animes</a>
-  <a href="#jeux">🎮 Jeux vidéo</a>
-  <a href="#favoris">⭐ Favoris</a>
-  <a href="#recents">🕒 Récents</a>
-  <a href="#administration">🔐 Administration</a>
+<nav>
+<a href="#accueil">Accueil</a>
+<a href="#animes">Animes</a>
+<a href="#jeux">Jeux vidéo</a>
 </nav>
 
-<div class="hero">
-  <img
-    id="bannerImage"
-    src="banniere-jog.png"
-    alt="Univers des animes et des jeux vidéo"
-    onerror="this.style.display='none';document.getElementById('heroFallback').classList.remove('hidden')"
-  >
-  <div id="heroFallback" class="hero-fallback hidden">
-    <h2>JOG Anime World</h2>
-    <p>Entre dans la légende, vis ta passion !</p>
-    <p>🔥 Animes • 🎮 Jeux vidéo • 🌍 Découvertes</p>
-  </div>
-</div>
+<main id="accueil">
+<h2>🔎 Recherche</h2>
+<input id="search" type="search" placeholder="Rechercher un anime ou un jeu..." oninput="filterCards()">
+<p class="note">Découvre des œuvres et retrouve leurs informations sur des sites officiels. La disponibilité peut varier selon le pays.</p>
 
-<div class="hero-actions">
-  <button id="chooseBannerButton" type="button">🖼️ Modifier l'image</button>
-  <input id="bannerFile" type="file" accept="image/*" class="hidden">
-</div>
-<p class="small" style="text-align:center">
-  L'aperçu de la nouvelle bannière est temporaire. Pour la publier pour tous,
-  il faut héberger l'image et enregistrer son adresse dans la configuration du site.
-</p>
-
-<div class="intro">
-  <h2>Bienvenue dans ton univers ! 🌌</h2>
-  <p>Explore tes animes préférés et découvre de nouveaux jeux.</p>
-</div>
-
-<div class="search-area">
-  <input id="search" type="search"
-    placeholder="🔎 Rechercher un anime ou un jeu..."
-    aria-label="Rechercher un anime ou un jeu">
-</div>
-
-<div class="filters" aria-label="Filtres de contenu">
-  <button class="active" data-filter="all">🌟 Tout</button>
-  <button data-filter="anime">🔥 Animes</button>
-  <button data-filter="game">🎮 Jeux vidéo</button>
-</div>
-
-<section class="content" id="animes">
-  <h2 class="section-title">🔥 Univers des animes</h2>
-  <p class="section-description">Retrouve les séries, leurs descriptions et leurs sites officiels.</p>
-  <div class="grid" id="animeGrid"></div>
+<section id="animes">
+<h2>🎌 Animes</h2>
+<div class="grid" id="animeGrid"></div>
 </section>
 
-<section class="content" id="jeux">
-  <h2 class="section-title">🎮 Univers des jeux vidéo</h2>
-  <p class="section-description">Découvre les jeux et visite les sites de leurs éditeurs.</p>
-  <div class="grid" id="gameGrid"></div>
+<section id="jeux">
+<h2>🎮 Jeux vidéo</h2>
+<div class="grid" id="gameGrid"></div>
 </section>
-
-<section class="content" id="favoris">
-  <h2 class="section-title">⭐ Mes favoris</h2>
-  <div class="grid" id="favoriteGrid"></div>
-</section>
-
-<section class="content" id="recents">
-  <h2 class="section-title">🕒 Consultés récemment</h2>
-  <div class="grid" id="recentGrid"></div>
-</section>
-
-<section class="content" id="administration">
-  <h2 class="section-title">🔐 Administration</h2>
-  <div class="admin-box">
-    <p>
-      L'espace d'administration définitif doit être relié à une authentification
-      sécurisée et à la base de données. Ce formulaire ne constitue pas, à lui seul,
-      une protection permettant de gérer le site en toute sécurité.
-    </p>
-    <p>
-      Pour permettre à l'administrateur d'ajouter, de modifier et de supprimer
-      les contenus sans donner ces droits aux visiteurs, il faut configurer
-      Supabase Auth, les autorisations de la base de données et les règles RLS.
-    </p>
-    <p>
-      Les fonctions de gestion seront activées après cette configuration.
-      N'inscris pas de mot de passe personnel dans ce fichier HTML.
-    </p>
-  </div>
-</section>
+</main>
 
 <footer>
-  <strong>⚡ JOG Anime World</strong>
-  <p>Entre dans la légende, vis ta passion !</p>
-  <p>
-    <a href="#accueil">Accueil</a> ·
-    <a href="#animes">Animes</a> ·
-    <a href="#jeux">Jeux vidéo</a> ·
-    <a href="#favoris">Favoris</a>
-  </p>
-  <p class="small">
-    Les noms, images et marques appartiennent à leurs propriétaires respectifs.
-    Les liens externes conduisent vers des sites tiers. Les disponibilités
-    des services peuvent varier selon le pays.
-  </p>
+<p>© 2026 JOG Anime World</p>
+<p>Un site de passion pour les fans d'animes et de jeux vidéo.</p>
 </footer>
 
 <script>
-"use strict";
-
-/*
-  Les liens ci-dessous mènent aux sites officiels connus.
-  Une image de remplacement est affichée si une illustration ne se charge pas.
-*/
-
 const animes = [
-  {name:"Blue Lock",tag:"Football • Sport",desc:"Des attaquants rivalisent pour devenir le meilleur buteur du Japon.",url:"https://bluelock-anime-en.com/",img:"https://upload.wikimedia.org/wikipedia/en/4/4e/Blue_Lock_manga_volume_1.png"},
-  {name:"Naruto",tag:"Ninja • Aventure",desc:"Les aventures d'un jeune ninja qui rêve de devenir Hokage.",url:"https://naruto-official.com/",img:"https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg"},
-  {name:"Naruto Shippuden",tag:"Ninja • Action",desc:"Naruto poursuit son chemin après plusieurs années d'entraînement.",url:"https://naruto-official.com/",img:"https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg"},
-  {name:"One Piece",tag:"Pirates • Aventure",desc:"Luffy part à la recherche du légendaire trésor One Piece.",url:"https://one-piece.com/",img:"https://upload.wikimedia.org/wikipedia/en/0/09/OnePieceMangaVolume1.jpg"},
-  {name:"Dragon Ball",tag:"Combat • Aventure",desc:"Goku découvre un monde rempli de combats et d'aventures.",url:"https://dragon-ball-official.com/",img:"https://upload.wikimedia.org/wikipedia/en/c/c9/Dragon_Ball_Volume_1.jpg"},
-  {name:"Dragon Ball Super",tag:"Combat • Fantastique",desc:"Goku et ses amis rencontrent de nouveaux adversaires puissants.",url:"https://dragon-ball-official.com/",img:"https://upload.wikimedia.org/wikipedia/en/c/c9/Dragon_Ball_Volume_1.jpg"},
-  {name:"Demon Slayer",tag:"Action • Fantastique",desc:"Tanjiro entreprend un voyage difficile pour protéger sa famille.",url:"https://demonslayer-anime.com/",img:"https://upload.wikimedia.org/wikipedia/en/9/9e/Kimetsu_no_Yaiba_volume_1_cover.jpg"},
-  {name:"Jujutsu Kaisen",tag:"Action • Surnaturel",desc:"Des exorcistes combattent des fléaux dangereux.",url:"https://jujutsukaisen.jp/",img:"https://placehold.co/400x600/19192f/ffffff?text=Jujutsu+Kaisen"},
-  {name:"Solo Leveling",tag:"Action • Fantastique",desc:"Un chasseur découvre une capacité qui transforme sa vie.",url:"https://sololeveling-anime.net/",img:"https://placehold.co/400x600/19192f/ffffff?text=Solo+Leveling"},
-  {name:"Attack on Titan",tag:"Action • Drame",desc:"L'humanité lutte pour survivre derrière d'immenses murs.",url:"https://shingeki.tv/",img:"https://placehold.co/400x600/19192f/ffffff?text=Attack+on+Titan"},
-  {name:"My Hero Academia",tag:"Super-héros • Action",desc:"Des élèves s'entraînent pour devenir des héros.",url:"https://heroaca.com/",img:"https://upload.wikimedia.org/wikipedia/en/5/5a/My_Hero_Academia_Volume_1.png"},
-  {name:"Black Clover",tag:"Magie • Aventure",desc:"Asta rêve de devenir Empereur-Mage malgré son absence de magie.",url:"https://bclover.jp/",img:"https://placehold.co/400x600/19192f/ffffff?text=Black+Clover"},
-  {name:"Haikyuu!!",tag:"Sport • Volleyball",desc:"Une équipe de volleyball poursuit son rêve de victoire.",url:"https://haikyu.jp/",img:"https://placehold.co/400x600/19192f/ffffff?text=Haikyuu"},
-  {name:"Tokyo Revengers",tag:"Drame • Action",desc:"Un jeune homme tente de changer le cours d'événements tragiques.",url:"https://tokyo-revengers-anime.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Tokyo+Revengers"},
-  {name:"Hunter × Hunter",tag:"Aventure • Combat",desc:"Gon part à la recherche de son père et découvre un monde immense.",url:"https://www.ntv.co.jp/hunterhunter/",img:"https://placehold.co/400x600/19192f/ffffff?text=Hunter+x+Hunter"},
-  {name:"Bleach",tag:"Action • Fantastique",desc:"Ichigo découvre le monde des Shinigami.",url:"https://bleach-anime.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Bleach"},
-  {name:"Fairy Tail",tag:"Magie • Aventure",desc:"Une guilde de mages vit des aventures pleines d'action.",url:"https://fairytail-tv.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Fairy+Tail"},
-  {name:"One Punch Man",tag:"Action • Comédie",desc:"Saitama peut vaincre ses adversaires en un seul coup.",url:"https://onepunchman-anime.net/",img:"https://placehold.co/400x600/19192f/ffffff?text=One+Punch+Man"},
-  {name:"Death Note",tag:"Mystère • Thriller",desc:"Un carnet mystérieux bouleverse la vie d'un étudiant.",url:"https://www.ntv.co.jp/deathnote/",img:"https://placehold.co/400x600/19192f/ffffff?text=Death+Note"},
-  {name:"Spy × Family",tag:"Comédie • Espionnage",desc:"Une famille peu ordinaire cache plusieurs secrets.",url:"https://spy-family.net/",img:"https://placehold.co/400x600/19192f/ffffff?text=Spy+x+Family"},
-  {name:"Chainsaw Man",tag:"Action • Fantastique",desc:"Denji voit sa vie changer après une rencontre surnaturelle.",url:"https://chainsawman.dog/",img:"https://placehold.co/400x600/19192f/ffffff?text=Chainsaw+Man"},
-  {name:"Frieren",tag:"Fantastique • Aventure",desc:"Une mage elfique réfléchit au temps et aux liens humains.",url:"https://frieren-anime.jp/",img:"https://placehold.co/400x600/19192f/ffffff?text=Frieren"},
-  {name:"Dr. Stone",tag:"Science • Aventure",desc:"Senku tente de reconstruire la civilisation grâce à la science.",url:"https://dr-stone.jp/",img:"https://placehold.co/400x600/19192f/ffffff?text=Dr+Stone"},
-  {name:"The Seven Deadly Sins",tag:"Fantastique • Action",desc:"Des chevaliers légendaires se réunissent pour sauver un royaume.",url:"https://7-taizai.net/",img:"https://placehold.co/400x600/19192f/ffffff?text=Seven+Deadly+Sins"},
-  {name:"Sword Art Online",tag:"Aventure • Science-fiction",desc:"Des joueurs sont plongés dans un univers virtuel dangereux.",url:"https://www.swordart-online.net/",img:"https://placehold.co/400x600/19192f/ffffff?text=Sword+Art+Online"},
-  {name:"Mashle",tag:"Comédie • Magie",desc:"Un jeune homme sans magie compte sur sa force physique.",url:"https://mashle.pw/",img:"https://placehold.co/400x600/19192f/ffffff?text=Mashle"},
-  {name:"Fire Force",tag:"Action • Fantastique",desc:"Une brigade spéciale enquête sur des combustions humaines.",url:"https://fireforce-anime.jp/",img:"https://placehold.co/400x600/19192f/ffffff?text=Fire+Force"},
-  {name:"Vinland Saga",tag:"Historique • Aventure",desc:"Thorfinn grandit dans un monde marqué par les Vikings.",url:"https://vinlandsaga.jp/",img:"https://placehold.co/400x600/19192f/ffffff?text=Vinland+Saga"},
-  {name:"Boruto",tag:"Ninja • Aventure",desc:"Une nouvelle génération de ninjas découvre ses propres défis.",url:"https://naruto-official.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Boruto"},
-  {name:"JoJo's Bizarre Adventure",tag:"Action • Fantastique",desc:"Les membres d'une famille affrontent des ennemis extraordinaires.",url:"https://jojo-portal.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=JoJo"},
-  {name:"The Apothecary Diaries",tag:"Mystère • Historique",desc:"Maomao utilise ses connaissances pour résoudre des mystères.",url:"https://kusuriyanohitorigoto.jp/",img:"https://placehold.co/400x600/19192f/ffffff?text=Apothecary+Diaries"},
-  {name:"Re:Zero",tag:"Fantastique • Drame",desc:"Subaru se retrouve dans un monde où chaque choix compte.",url:"https://re-zero-anime.jp/",img:"https://placehold.co/400x600/19192f/ffffff?text=ReZero"},
-  {name:"Mob Psycho 100",tag:"Action • Comédie",desc:"Un collégien possède des pouvoirs psychiques extraordinaires.",url:"https://mobpsycho100.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Mob+Psycho"},
-  {name:"The Promised Neverland",tag:"Mystère • Thriller",desc:"Des enfants découvrent un secret bouleversant sur leur orphelinat.",url:"https://neverland-anime.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Promised+Neverland"},
-  {name:"Kuroko's Basketball",tag:"Sport • Basketball",desc:"Une équipe de basket vise les sommets du championnat.",url:"https://www.kurobas.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Kuroko+Basketball"},
-  {name:"Detective Conan",tag:"Mystère • Enquête",desc:"Un jeune détective résout des affaires complexes.",url:"https://www.ytv.co.jp/conan/",img:"https://placehold.co/400x600/19192f/ffffff?text=Detective+Conan"}
+["Blue Lock","https://www.crunchyroll.com/"],
+["One Piece","https://one-piece.com/"],
+["Naruto","https://naruto-official.com/"],
+["Dragon Ball","https://dragon-ball-official.com/"],
+["Demon Slayer","https://demonslayer-anime.com/"],
+["Jujutsu Kaisen","https://jujutsukaisen.jp/"],
+["My Hero Academia","https://heroaca.com/"],
+["Attack on Titan","https://shingeki.tv/"],
+["Solo Leveling","https://sololeveling-anime.net/"],
+["Haikyu!!","https://haikyu.jp/"],
+["Death Note","https://www.viz.com/"],
+["Hunter x Hunter","https://www.viz.com/"],
+["Bleach","https://bleach-anime.com/"],
+["Black Clover","https://bclover.jp/"],
+["Spy x Family","https://spy-family.net/"],
+["Tokyo Revengers","https://tokyo-revengers-anime.com/"],
+["Chainsaw Man","https://chainsawman.dog/"],
+["Dr. Stone","https://dr-stone.jp/"],
+["The Seven Deadly Sins","https://www.netflix.com/"],
+["Fairy Tail","https://fairytail100yq.com/"],
+["Fullmetal Alchemist","https://www.aniplex.co.jp/"],
+["Sword Art Online","https://www.swordart-online.net/"],
+["Vinland Saga","https://vinlandsaga.jp/"],
+["Mob Psycho 100","https://mobpsycho100.com/"],
+["JoJo's Bizarre Adventure","https://jojo-portal.com/"],
+["Baki","https://www.netflix.com/"],
+["Bungo Stray Dogs","https://bungosd.com/"],
+["Fire Force","https://fireforce-anime.jp/"],
+["Mashle","https://mashle.pw/"],
+["Re:Zero","https://re-zero-anime.jp/"],
+["Kuroko's Basketball","https://www.kurobas.com/"],
+["Captain Tsubasa","https://captain-tsubasa.com/"],
+["Pokémon","https://www.pokemon.com/"],
+["Digimon","https://digimon.net/"],
+["Inazuma Eleven","https://www.inazuma.jp/"]
 ];
 
 const games = [
-  {name:"Minecraft",tag:"Création • Aventure",desc:"Construis, explore et invente ton propre monde.",url:"https://www.minecraft.net/",img:"https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"},
-  {name:"eFootball",tag:"Football • Simulation",desc:"Découvre le football virtuel de Konami.",url:"https://www.konami.com/efootball/",img:"https://placehold.co/400x600/19192f/ffffff?text=eFootball"},
-  {name:"EA SPORTS FC",tag:"Football • Sport",desc:"Joue au football avec des clubs et des compétitions.",url:"https://www.ea.com/games/ea-sports-fc",img:"https://placehold.co/400x600/19192f/ffffff?text=EA+SPORTS+FC"},
-  {name:"Fortnite",tag:"Action • Multijoueur",desc:"Explore plusieurs modes de jeu et construis tes stratégies.",url:"https://www.fortnite.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Fortnite"},
-  {name:"Genshin Impact",tag:"RPG • Aventure",desc:"Explore Teyvat et découvre ses personnages.",url:"https://genshin.hoyoverse.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Genshin+Impact"},
-  {name:"Roblox",tag:"Création • Multijoueur",desc:"Explore des expériences créées par une grande communauté.",url:"https://www.roblox.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Roblox"},
-  {name:"Free Fire",tag:"Battle Royale • Action",desc:"Participe à des affrontements de survie multijoueurs.",url:"https://ff.garena.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Free+Fire"},
-  {name:"Call of Duty",tag:"Action • FPS",desc:"Découvre la série de jeux d'action Call of Duty.",url:"https://www.callofduty.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Call+of+Duty"},
-  {name:"Tekken 8",tag:"Combat • Sport",desc:"Affronte tes adversaires dans un jeu de combat.",url:"https://tekken.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Tekken+8"},
-  {name:"Dragon Ball: Sparking! ZERO",tag:"Combat • Anime",desc:"Retrouve des combats spectaculaires inspirés de Dragon Ball.",url:"https://en.bandainamcoent.eu/dragon-ball/dragon-ball-sparking-zero",img:"https://placehold.co/400x600/19192f/ffffff?text=Dragon+Ball+Sparking+ZERO"},
-  {name:"Naruto: Ultimate Ninja Storm",tag:"Combat • Anime",desc:"Retrouve les combats de Naruto dans une série de jeux.",url:"https://en.bandainamcoent.eu/",img:"https://placehold.co/400x600/19192f/ffffff?text=Naruto+Ninja+Storm"},
-  {name:"Rocket League",tag:"Sport • Voitures",desc:"Joue au football avec des voitures propulsées.",url:"https://www.rocketleague.com/",img:"https://placehold.co/400x600/19192f/ffffff?text=Rocket+League"},
-  {name:"Grand Theft Auto V",tag:"Action • Monde ouvert",desc:"Explore un grand monde ouvert dans une aventure criminelle fictive.",url:"https://www.rockstargames.com/gta-v",img:"https://placehold.co/400x600/19192f/ffffff?text=GTA+V"},
-  {name:"Red Dead Redemption 2",tag:"Aventure • Western",desc:"Vis une aventure narrative dans un univers western.",url:"https://www.rockstargames.com/reddeadredemption2",img:"https://placehold.co/400x600/19192f/ffffff?text=Red+Dead+Redemption+2"},
-  {name:"PUBG Mobile",tag:"Action • Survie",desc:"Participe à des matchs de survie multijoueurs.",url:"https://www.pubgmobile.com/",img:"https://placehold.co/400x600/19
+["Minecraft","https://www.minecraft.net/"],
+["Fortnite","https://www.fortnite.com/"],
+["Roblox","https://www.roblox.com/"],
+["Free Fire","https://ff.garena.com/"],
+["PUBG Mobile","https://www.pubgmobile.com/"],
+["Genshin Impact","https://genshin.hoyoverse.com/"],
+["Honkai: Star Rail","https://hsr.hoyoverse.com/"],
+["Zenless Zone Zero","https://zenless.hoyoverse.com/"],
+["EA SPORTS FC","https://www.ea.com/games/ea-sports-fc"],
+["eFootball","https://www.konami.com/efootball/"],
+["Call of Duty","https://www.callofduty.com/"],
+["Brawl Stars","https://supercell.com/"],
+["Clash of Clans","https://supercell.com/"],
+["Clash Royale","https://supercell.com/"],
+["League of Legends","https://www.leagueoflegends.com/"],
+["Valorant","https://playvalorant.com/"],
+["Overwatch 2","https://overwatch.blizzard.com/"],
+["Rocket League","https://www.rocketleague.com/"],
+["Apex Legends","https://www.ea.com/games/apex-legends"],
+["GTA V","https://www.rockstargames.com/"],
+["Red Dead Redemption 2","https://www.rockstargames.com/"],
+["The Sims 4","https://www.ea.com/games/the-sims"],
+["Among Us","https://www.innersloth.com/games/among-us/"],
+["Stumble Guys","https://www.stumbleguys.com/"],
+["Terraria","https://terraria.org/"],
+["Stardew Valley","https://www.stardewvalley.net/"],
+["Fall Guys","https://www.fallguys.com/"],
+["Hollow Knight","https://www.hollowknight.com/"],
+["Sonic","https://www.sonicthehedgehog.com/"],
+["Super Mario","https://mario.nintendo.com/"],
+["The Legend of Zelda","https://www.zelda.com/"],
+["Pokémon Games","https://www.pokemon.com/"],
+["Street Fighter 6","https://www.streetfighter.com/"],
+["Tekken 8","https://tekken.com/"],
+["Dragon Ball: Sparking! ZERO","https://www.bandainamcoent.com/"]
+];
+
+function createCards(items, target){
+ const grid=document.getElementById(target);
+ items.forEach(item=>{
+  const card=document.createElement("article");
+  card.className="card";
+  card.innerHTML=`<img loading="lazy" src="https://placehold.co/400x500/201333/ffffff?text=${encodeURIComponent(item[0])}" alt="${item[0]}"><h3>${item[0]}</h3><a href="${item[1]}" target="_blank" rel="noopener noreferrer">Site officiel / infos</a>`;
+  grid.appendChild(card);
+ });
+}
+createCards(animes,"animeGrid");
+createCards(games,"gameGrid");
+
+function filterCards(){
+ const q=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".card").forEach(card=>{
+  card.style.display=card.innerText.toLowerCase().includes(q)?"block":"none";
+ });
+}
+</script>
+</body>
+</html>
