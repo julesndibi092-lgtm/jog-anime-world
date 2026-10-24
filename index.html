@@ -4,309 +4,615 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JOG Anime World</title>
-
 <style>
 :root {
-  --bg:#050713;
-  --panel:#0c1230;
-  --blue:#00e5ff;
-  --pink:#ff35df;
-  --purple:#8b5cf6;
-  --text:#ffffff;
-  --muted:#b9c5e8;
+  --bg:#080b18;
+  --panel:#11182d;
+  --blue:#00d9ff;
+  --pink:#ff36c7;
+  --text:#f5f7ff;
+  --muted:#aab4d0;
 }
-
-* {
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
+* { box-sizing:border-box; }
 body {
+  margin:0;
+  font-family:Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
-  font-family:Arial,sans-serif;
 }
-
 header {
-  position:sticky;
-  top:0;
-  z-index:10;
-  padding:18px;
-  background:#080b1df5;
-  border-bottom:1px solid var(--purple);
+  padding:24px 16px;
+  text-align:center;
+  background:linear-gradient(120deg,#101d45,#311044);
+  border-bottom:2px solid var(--blue);
 }
-
-nav {
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  flex-wrap:wrap;
-}
-
-.logo {
-  font-size:23px;
-  font-weight:bold;
+h1 {
+  margin:0;
   color:var(--blue);
-  text-shadow:0 0 12px var(--blue);
+  text-shadow:0 0 15px #00d9ff88;
 }
-
-nav a {
-  color:white;
-  text-decoration:none;
-  margin:5px;
+header p { color:var(--muted); }
+nav {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-top:18px;
 }
-
-nav a:hover {
-  color:var(--pink);
-}
-
-button {
-  cursor:pointer;
-  padding:10px 15px;
+button,.btn {
   border:0;
   border-radius:8px;
-  color:white;
-  background:linear-gradient(90deg,var(--purple),#245bff);
+  padding:11px 15px;
+  cursor:pointer;
+  font-weight:bold;
+  background:var(--blue);
+  color:#06101b;
 }
-
-button:hover {
-  box-shadow:0 0 15px var(--blue);
+button:hover { opacity:.85; }
+main {
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
 }
-
-input,textarea {
+section { margin-bottom:35px; }
+h2 { color:var(--pink); }
+input,textarea,select {
+  display:block;
   width:100%;
   padding:12px;
-  margin:7px 0;
-  color:white;
-  background:#111936;
-  border:1px solid var(--purple);
+  margin:8px 0 14px;
+  border:1px solid #384466;
   border-radius:8px;
+  background:#080e20;
+  color:white;
 }
-
-.hero {
-  padding:75px 20px;
-  text-align:center;
-  background:radial-gradient(ellipse at top,#28205c,#050713 70%);
-}
-
-.hero h1 {
-  font-size:clamp(32px,7vw,58px);
-  color:var(--blue);
-  text-shadow:0 0 18px var(--purple);
-  margin-bottom:20px;
-}
-
-.hero p {
-  color:var(--muted);
-  line-height:1.7;
-  margin-bottom:25px;
-}
-
-section {
-  max-width:1200px;
-  margin:auto;
-  padding:35px 20px;
-}
-
-h2 {
-  margin-bottom:20px;
-  color:var(--pink);
-}
-
+textarea { min-height:90px; }
 .grid {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(155px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:16px;
 }
-
-.card {
-  overflow:hidden;
+.card,.panel {
   background:var(--panel);
-  border:1px solid #28265c;
+  border:1px solid #263657;
   border-radius:12px;
-  transition:.2s;
+  overflow:hidden;
 }
-
-.card:hover {
-  transform:translateY(-5px);
-  border-color:var(--blue);
-  box-shadow:0 0 15px #00e5ff35;
-}
-
 .card img {
   width:100%;
-  height:190px;
+  height:220px;
   object-fit:cover;
-  background:#111936;
+  background:#1c2743;
 }
-
-.card-content {
-  padding:12px;
-}
-
-.card h3 {
-  font-size:16px;
-  margin-bottom:8px;
-}
-
-.card p {
-  font-size:13px;
-  line-height:1.5;
-  color:var(--muted);
-  margin-bottom:12px;
-}
-
-.badge {
-  display:inline-block;
-  color:var(--blue);
-  font-size:12px;
-  margin-bottom:8px;
-}
-
-.panel {
-  display:none;
-  max-width:650px;
-  margin:20px auto;
-  padding:20px;
-  background:var(--panel);
-  border:1px solid var(--purple);
-  border-radius:12px;
-}
-
-.panel h3 {
-  margin:12px 0;
-}
-
+.card-body { padding:14px; }
+.card h3 { margin-top:0; }
+.muted { color:var(--muted); }
+.panel { padding:18px; margin:12px 0; }
+.hidden { display:none!important; }
+.notice { padding:12px; color:var(--blue); }
 footer {
+  padding:25px;
   text-align:center;
-  padding:30px 15px;
+  border-top:1px solid #263657;
   color:var(--muted);
-  border-top:1px solid #28265c;
 }
-
-.hidden {
-  display:none!important;
-}
+.actions { display:flex; flex-wrap:wrap; gap:8px; }
+.actions button { margin-top:8px; }
+a { color:var(--blue); }
 </style>
 </head>
-
 <body>
 
 <header>
+  <h1>JOG Anime World</h1>
+  <p>Ton univers d'animes et de jeux vidéo !</p>
   <nav>
-    <div class="logo">⚡ JOG Anime World</div>
-    <div>
-      <a href="#accueil">Accueil</a>
-      <a href="#animes">Animes</a>
-      <a href="#jeux">Jeux vidéo</a>
-      <a href="#admin">Admin</a>
-    </div>
+    <button onclick="goTo('accueil')">Accueil</button>
+    <button onclick="goTo('animes')">Animes</button>
+    <button onclick="goTo('jeux')">Jeux vidéo</button>
+    <button onclick="goTo('admin')">Administration</button>
   </nav>
 </header>
 
 <main>
-  <div class="hero" id="accueil">
-    <h1>JOG Anime World</h1>
-    <p>
-      Ton univers anime et gaming.<br>
-      Découvre des animes, explore des jeux et retrouve tes favoris !
-    </p>
-    <button onclick="document.getElementById('animes').scrollIntoView({behavior:'smooth'})">
-      Explorer les animes
-    </button>
-  </div>
-
-  <section>
-    <input id="search" type="search"
-      placeholder="🔎 Rechercher un anime ou un jeu..."
-      oninput="renderAll()">
+  <section id="accueil">
+    <div class="panel">
+      <h2>Bienvenue dans JOG Anime World</h2>
+      <p>Découvre des animes, explore des jeux vidéo et retrouve les informations utiles sur tes univers préférés.</p>
+      <input id="search" placeholder="Rechercher un anime ou un jeu...">
+    </div>
   </section>
 
   <section id="animes">
-    <h2>🌌 Animes</h2>
-    <p id="anime-count"></p>
-    <div class="grid" id="anime-grid"></div>
+    <h2>Les animes</h2>
+    <div id="animeGrid" class="grid"></div>
   </section>
 
   <section id="jeux">
-    <h2>🎮 Jeux vidéo</h2>
-    <p id="game-count"></p>
-    <div class="grid" id="game-grid"></div>
+    <h2>Les jeux vidéo</h2>
+    <div id="gameGrid" class="grid"></div>
   </section>
 
   <section id="admin">
-    <h2>🔐 Espace administrateur</h2>
-    <p style="color:var(--muted);line-height:1.7">
-      L'espace administrateur doit être connecté à Supabase
-      pour sécuriser la connexion et partager les modifications
-      entre tous les visiteurs.
-    </p>
-    <button onclick="togglePanel()">Afficher le formulaire</button>
+    <h2>Administration</h2>
 
-    <div class="panel" id="admin-panel">
-      <h3>Ajouter un contenu</h3>
+    <div id="loginBox" class="panel">
+      <p>Connecte-toi avec ton compte administrateur.</p>
+      <label for="email">Adresse e-mail</label>
+      <input id="email" type="email" autocomplete="username">
+      <label for="password">Mot de passe</label>
+      <input id="password" type="password" autocomplete="current-password">
+      <button id="loginBtn">Se connecter</button>
+    </div>
+
+    <div id="adminBox" class="panel hidden">
+      <p id="adminStatus"></p>
+      <button id="logoutBtn">Se déconnecter</button>
+
+      <hr>
+
+      <h3 id="formTitle">Ajouter une fiche</h3>
+
       <label for="kind">Catégorie</label>
-      <select id="kind" style="width:100%;padding:12px;background:#111936;color:white;border-radius:8px">
-        <option value="anime">Anime</option>
-        <option value="game">Jeu vidéo</option>
+      <select id="kind">
+        <option value="animes">Anime</option>
+        <option value="games">Jeu vidéo</option>
       </select>
 
-      <input id="title" placeholder="Titre du contenu">
-      <textarea id="description" placeholder="Description"></textarea>
-      <input id="image" placeholder="Lien de l'image (URL)">
+      <label for="title">Titre</label>
+      <input id="title" placeholder="Titre de l'œuvre">
 
-      <button onclick="addContent()">Ajouter à cette session</button>
-      <p id="admin-message" style="margin-top:12px;color:var(--blue)"></p>
+      <label for="description">Description</label>
+      <textarea id="description" placeholder="Présente l'œuvre..."></textarea>
+
+      <label for="imageUrl">Lien de l'image</label>
+      <input id="imageUrl" type="url" placeholder="https://...">
+
+      <label for="officialUrl">Lien d'information ou site officiel</label>
+      <input id="officialUrl" type="url" placeholder="https://...">
+
+      <div class="actions">
+        <button id="saveBtn">Enregistrer</button>
+        <button id="cancelBtn">Annuler</button>
+        <button id="seedBtn">Importer le catalogue de départ</button>
+      </div>
+
+      <p id="formMessage" class="notice"></p>
+
+      <h3>Gérer les fiches</h3>
+      <div id="manageList"></div>
     </div>
+
+    <p id="message" class="notice"></p>
   </section>
 </main>
 
 <footer>
-  <p>© 2026 JOG Anime World — Anime, gaming et passion.</p>
+  © <span id="year"></span> JOG Anime World
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const animes = [
-  ["Blue Lock","Football, compétition et ambition."],
-  ["Naruto","Un jeune ninja poursuit son rêve."],
-  ["One Piece","Une aventure à la recherche du trésor légendaire."],
-  ["Dragon Ball","Des combattants défendent la Terre."],
-  ["Demon Slayer","Un jeune héros combat des démons."],
-  ["Jujutsu Kaisen","Des exorcistes affrontent des malédictions."],
-  ["Attack on Titan","L'humanité lutte pour sa survie."],
-  ["My Hero Academia","Des héros protègent la société."],
-  ["Haikyuu!!","Une équipe de volley veut progresser."],
-  ["Solo Leveling","Un chasseur devient plus puissant."]
+"use strict";
+
+const SUPABASE_URL =
+  "https://eoonopkhsinnieavwwyj.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_EHsGDT9xnwtY9sJJaLSzCQ_ZnuNTDzU";
+
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const $ = id => document.getElementById(id);
+
+$("year").textContent = new Date().getFullYear();
+
+let catalog = { animes: [], games: [] };
+let isAdmin = false;
+let editing = null;
+let currentUserId = null;
+
+const STARTER_ANIMES = [
+  "Naruto", "Naruto Shippuden", "One Piece", "Dragon Ball",
+  "Dragon Ball Z", "Dragon Ball Super", "Bleach", "One Punch Man",
+  "Demon Slayer", "Jujutsu Kaisen", "My Hero Academia",
+  "Attack on Titan", "Blue Lock", "Haikyuu!!", "Black Clover",
+  "Hunter x Hunter", "Death Note", "Tokyo Ghoul", "Fairy Tail",
+  "Fullmetal Alchemist Brotherhood", "Chainsaw Man", "Spy x Family",
+  "Solo Leveling", "Vinland Saga", "Dr. Stone", "Mob Psycho 100",
+  "JoJo's Bizarre Adventure", "The Seven Deadly Sins",
+  "Sword Art Online", "Pokémon"
 ];
 
-const games = [
-  ["eFootball","Football et compétition."],
-  ["EA SPORTS FC","Un jeu de football."],
-  ["Tekken","Combats et arts martiaux."],
-  ["Dragon Ball Z: Budokai","Combats inspirés de Dragon Ball."],
-  ["Naruto Shippuden: Ultimate Ninja","Combats dans l'univers Naruto."],
-  ["Minecraft","Construction et exploration."],
-  ["God of War","Aventure et mythologie."],
-  ["Grand Theft Auto","Jeu d'action en monde ouvert."],
-  ["Need for Speed","Courses automobiles."],
-  ["PES","Football et matchs."]
+const STARTER_GAMES = [
+  "Minecraft", "Roblox", "EA Sports FC", "eFootball",
+  "Grand Theft Auto V", "Grand Theft Auto San Andreas",
+  "Call of Duty", "Fortnite", "Free Fire", "PUBG Mobile",
+  "Mobile Legends", "Genshin Impact", "Honkai: Star Rail",
+  "Tekken 8", "Mortal Kombat 1", "Street Fighter 6",
+  "Dragon Ball: Sparking! ZERO", "Dragon Ball FighterZ",
+  "Naruto Shippuden: Ultimate Ninja Storm 4",
+  "Jump Force", "God of War", "God of War Ragnarök",
+  "The Last of Us", "Red Dead Redemption 2", "Need for Speed",
+  "Gran Turismo 7", "Super Mario Bros.", "The Legend of Zelda",
+  "Sonic Frontiers", "PES 2021"
 ];
 
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  })[c]);
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
 }
 
-function card(item, category) {
-  const title = escapeHTML(item[0]);
-  const description = escapeHTML(item[1]);
-  const image = item[2] || "";
+function showMessage(message) {
+  $("message").textContent = message;
+}
+
+function showFormMessage(message) {
+  $("formMessage").textContent = message;
+}
+
+function goTo(id) {
+  $(id).scrollIntoView({ behavior:"smooth" });
+}
+
+function makeStarterItems(titles) {
+  return titles.map(title => ({
+    title,
+    description: "Découvre l'univers de " + title + ". Cette fiche présente cette œuvre et permet d'en apprendre davantage.",
+    image_url: "",
+    official_url:
+      "https://www.google.com/search?q=" +
+      encodeURIComponent(title + " site officiel")
+  }));
+}
+
+function renderCard(item, kind) {
+  const image = item.image_url
+    ? `<img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(item.title)}" loading="lazy" onerror="this.style.display='none'">`
+    : "";
+
+  const link = item.official_url &&
+    /^https?:\/\//i.test(item.official_url)
+    ? `<p><a href="${escapeHtml(item.official_url)}" target="_blank" rel="noopener noreferrer">En savoir plus</a></p>`
+    : "";
 
   return `
     <article class="card">
-      <
+      ${image}
+      <div class="card-body">
+        <h3>${escapeHtml(item.title)}</h3>
+        <p>${escapeHtml(item.description || "Aucune description disponible.")}</p>
+        ${link}
+      </div>
+    </article>
+  `;
+}
+
+function renderCatalog() {
+  const query = $("search").value.trim().toLowerCase();
+
+  const animes = catalog.animes.filter(item =>
+    (item.title || "").toLowerCase().includes(query) ||
+    (item.description || "").toLowerCase().includes(query)
+  );
+
+  const games = catalog.games.filter(item =>
+    (item.title || "").toLowerCase().includes(query) ||
+    (item.description || "").toLowerCase().includes(query)
+  );
+
+  $("animeGrid").innerHTML = animes.length
+    ? animes.map(item => renderCard(item, "animes")).join("")
+    : "<p class='muted'>Aucun anime trouvé.</p>";
+
+  $("gameGrid").innerHTML = games.length
+    ? games.map(item => renderCard(item, "games")).join("")
+    : "<p class='muted'>Aucun jeu trouvé.</p>";
+
+  renderManageList();
+}
+
+async function loadCatalog() {
+  showMessage("Chargement du catalogue...");
+
+  const [animeResult, gameResult] = await Promise.all([
+    db.from("animes").select("*").order("title"),
+    db.from("games").select("*").order("title")
+  ]);
+
+  if (animeResult.error || gameResult.error) {
+    console.error(animeResult.error, gameResult.error);
+    showMessage("Erreur de chargement. Vérifie les tables Supabase et leurs permissions.");
+    return;
+  }
+
+  catalog.animes = animeResult.data || [];
+  catalog.games = gameResult.data || [];
+
+  renderCatalog();
+  showMessage("Catalogue chargé.");
+}
+
+function renderManageList() {
+  if (!isAdmin) {
+    $("manageList").innerHTML = "";
+    return;
+  }
+
+  const items = [
+    ...catalog.animes.map(item => ({ ...item, category:"animes" })),
+    ...catalog.games.map(item => ({ ...item, category:"games" }))
+  ];
+
+  if (!items.length) {
+    $("manageList").innerHTML =
+      "<p class='muted'>Aucune fiche à gérer pour le moment.</p>";
+    return;
+  }
+
+  $("manageList").innerHTML = items.map(item => `
+    <div class="panel">
+      <strong>${escapeHtml(item.title)}</strong>
+      <p class="muted">${item.category === "animes" ? "Anime" : "Jeu vidéo"}</p>
+      <div class="actions">
+        <button data-edit="${item.category}:${item.id}">Modifier</button>
+        <button data-delete="${item.category}:${item.id}">Supprimer</button>
+      </div>
+    </div>
+  `).join("");
+
+  $("manageList").querySelectorAll("[data-edit]").forEach(button => {
+    button.onclick = () => {
+      const [kind, id] = button.dataset.edit.split(":");
+      const item = catalog[kind].find(entry => String(entry.id) === id);
+
+      if (!item) return;
+
+      editing = { id:item.id };
+      $("kind").value = kind;
+      $("title").value = item.title || "";
+      $("description").value = item.description || "";
+      $("imageUrl").value = item.image_url || "";
+      $("officialUrl").value = item.official_url || "";
+      $("formTitle").textContent = "Modifier une fiche";
+      $("saveBtn").textContent = "Enregistrer les modifications";
+      goTo("admin");
+    };
+  });
+
+  $("manageList").querySelectorAll("[data-delete]").forEach(button => {
+    button.onclick = async () => {
+      if (!isAdmin) return;
+
+      const [kind, id] = button.dataset.delete.split(":");
+
+      if (!confirm("Confirmer la suppression de cette fiche ?")) return;
+
+      const { error } = await db
+        .from(kind)
+        .delete()
+        .eq("id", id);
+
+      if (error) {
+        console.error(error);
+        showMessage("Suppression impossible. Vérifie les droits administrateur.");
+        return;
+      }
+
+      await loadCatalog();
+      showMessage("Fiche supprimée.");
+    };
+  });
+}
+
+async function checkAdmin(user) {
+  if (!user) return;
+
+  const { data, error } = await db
+    .from("user_roles")
+    .select("role")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (error || !data || data.role !== "admin") {
+    isAdmin = false;
+    currentUserId = null;
+
+    $("loginBox").classList.remove("hidden");
+    $("adminBox").classList.add("hidden");
+
+    showMessage("Ce compte n'a pas les droits administrateur.");
+    return;
+  }
+
+  isAdmin = true;
+  currentUserId = user.id;
+
+  $("loginBox").classList.add("hidden");
+  $("adminBox").classList.remove("hidden");
+  $("adminStatus").textContent = "Connecté : " + user.email;
+
+  renderManageList();
+  showMessage("Connexion administrateur réussie.");
+}
+
+$("loginBtn").onclick = async () => {
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  if (!email || !password) {
+    showMessage("Entre ton e-mail et ton mot de passe.");
+    return;
+  }
+
+  showMessage("Connexion en cours...");
+
+  const { data, error } = await db.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    console.error(error);
+    showMessage("Connexion impossible. Vérifie tes identifiants.");
+    return;
+  }
+
+  await checkAdmin(data.user);
+};
+
+$("logoutBtn").onclick = async () => {
+  const { error } = await db.auth.signOut();
+
+  if (error) {
+    showMessage("Déconnexion impossible.");
+    return;
+  }
+
+  isAdmin = false;
+  currentUserId = null;
+  editing = null;
+
+  $("loginBox").classList.remove("hidden");
+  $("adminBox").classList.add("hidden");
+
+  showMessage("Déconnexion réussie.");
+};
+
+function resetForm() {
+  editing = null;
+  $("title").value = "";
+  $("description").value = "";
+  $("imageUrl").value = "";
+  $("officialUrl").value = "";
+  $("formTitle").textContent = "Ajouter une fiche";
+  $("saveBtn").textContent = "Enregistrer";
+  showFormMessage("");
+}
+
+$("cancelBtn").onclick = resetForm;
+
+$("saveBtn").onclick = async () => {
+  if (!isAdmin) {
+    showFormMessage("Connecte-toi en tant qu'administrateur.");
+    return;
+  }
+
+  const kind = $("kind").value;
+
+  const item = {
+    title: $("title").value.trim(),
+    description: $("description").value.trim(),
+    image_url: $("imageUrl").value.trim(),
+    official_url: $("officialUrl").value.trim()
+  };
+
+  if (!item.title) {
+    showFormMessage("Le titre est obligatoire.");
+    return;
+  }
+
+  if (item.image_url && !/^https?:\/\//i.test(item.image_url)) {
+    showFormMessage("Le lien de l'image doit commencer par https:// ou http://.");
+    return;
+  }
+
+  if (item.official_url && !/^https?:\/\//i.test(item.official_url)) {
+    showFormMessage("Le lien doit commencer par https:// ou http://.");
+    return;
+  }
+
+  showFormMessage("Enregistrement en cours...");
+
+  let result;
+
+  if (editing) {
+    result = await db.from(kind).update(item).eq("id", editing.id);
+  } else {
+    result = await db.from(kind).insert(item);
+  }
+
+  if (result.error) {
+    console.error(result.error);
+    showFormMessage("Échec de l'enregistrement. Vérifie les permissions Supabase.");
+    return;
+  }
+
+  resetForm();
+  await loadCatalog();
+  showFormMessage("Fiche enregistrée.");
+};
+
+$("seedBtn").onclick = async () => {
+  if (!isAdmin) return;
+
+  const { count: animeCount, error: animeError } = await db
+    .from("animes")
+    .select("*", { count:"exact", head:true });
+
+  const { count: gameCount, error: gameError } = await db
+    .from("games")
+    .select("*", { count:"exact", head:true });
+
+  if (animeError || gameError) {
+    showMessage("Impossible de vérifier les catalogues.");
+    return;
+  }
+
+  if ((animeCount || 0) > 0 || (gameCount || 0) > 0) {
+    showMessage("Import annulé : au moins une table contient déjà des fiches.");
+    return;
+  }
+
+  if (!confirm("Importer les fiches de départ ?")) return;
+
+  const animeResult = await db
+    .from("animes")
+    .insert(makeStarterItems(STARTER_ANIMES));
+
+  if (animeResult.error) {
+    console.error(animeResult.error);
+    showMessage("Erreur lors de l'importation des animes.");
+    return;
+  }
+
+  const gameResult = await db
+    .from("games")
+    .insert(makeStarterItems(STARTER_GAMES));
+
+  if (gameResult.error) {
+    console.error(gameResult.error);
+    showMessage("Les animes sont importés, mais l'import des jeux a échoué.");
+    return;
+  }
+
+  await loadCatalog();
+  showMessage("Catalogue de départ importé.");
+};
+
+$("search").addEventListener("input", renderCatalog);
+
+db.auth.onAuthStateChange((event, session) => {
+  if (session && session.user) {
+    setTimeout(() => checkAdmin(session.user), 0);
+  } else {
+    isAdmin = false;
+    currentUserId = null;
+    $("loginBox").classList.remove("hidden");
+    $("adminBox").classList.add("hidden");
+    renderManageList();
+  }
+});
+
+loadCatalog();
+</script>
+</body>
+</html>
